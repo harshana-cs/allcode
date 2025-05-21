@@ -278,8 +278,8 @@ const User = require('./models/User');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/userRoutes');
 const articleRoutes = require('./routes/articleroutes');
-// const adRoutes = require('./routes/adsroutes');
-const altAdRoutes = require('./routes/ads'); // Ensure this isn't a duplicate route
+ const adRoutes = require('./routes/adsroutes');
+// const altAdRoutes = require('./routes/ads'); // Ensure this isn't a duplicate route
 const newsRoutes = require('./routes/news');
 const mainLoginRoutes = require('./routes/mainloginroutes');
 const authorRoutes = require('./routes/authoroutes');
@@ -326,8 +326,8 @@ mongoose.connect(mongoURI, {
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/articles', articleRoutes);
-// app.use('/api/ads', adRoutes); // Main ads route
-app.use('/api/ads-alt', altAdRoutes); // Alternate ads route, avoid conflict if same
+app.use('/api/ads', adRoutes); // Main ads route
+// app.use('/api/ads-alt', altAdRoutes); // Alternate ads route, avoid conflict if same
 app.use('/api/news', newsRoutes);
 app.use('/api/login', mainLoginRoutes);
 app.use('/api/author', authorRoutes);

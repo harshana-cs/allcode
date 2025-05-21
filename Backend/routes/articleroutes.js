@@ -168,5 +168,27 @@ router.patch('/:id/approve', async (req, res) => {
   }
 });
 
+// Reject article (just update status to 'rejected')
+router.patch('/:id/reject', async (req, res) => {
+  const { id } = req.params;
+
+  if (!ObjectId.isValid(id)) return res.status(400).json({ message: 'Invalid article ID' });
+
+  try {
+    const updatedArticle = await Article.findByIdAndUpdate(
+      id,
+      { status: 'rejected' },
+      { new: true }
+    );
+
+    if (!updatedArticle) return res.status(404).json({ message: 'Article not found' });
+
+    res.json({ message: 'Article rejected successfully', article: updatedArticle });
+  } catch (error) {
+    console.error('Error rejecting article:', error);
+    res.status(500).json({ message: 'Server error while rejecting article' });
+  }
+});
+
 
 module.exports = router;

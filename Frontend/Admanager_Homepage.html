@@ -1,91 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ad Manager Add Panel</title>
-    <link rel="stylesheet" href="Admanager_Homepage.css">
-</head>  
-<body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ad Manager Add Panel</title>
+  <link rel="stylesheet" href="Admanager_Homepage.css" />
+  <style>
+    /* Minimal styles to support your modal and pointer */
+    .hidden {
+      display: none;
+    }
+    .user-icon {
+      cursor: pointer;
+    }
     
-    <div class="container">
-        <div class="panel-header">
-            <div class="logo">
-                <div class="nep-logo">NEPNEWS</div>
-                <div class="title">Ad Manager Panel</div>
-            </div>
-            <div class="user-icon" id="userIcon">👤</div>
-
-        </div>
-        
-        <div class="tabs">
-    <div class="tab active" id="upload-tab">Upload Ad</div>
-    <div class="tab" id="view-tab">View Ads</div>
-</div>
-
-        
-        <div class="panel-content">
-            <div class="form-section">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Ad Title">
-                </div>
-                
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Ad website link">
-                </div>
-                <div class="form-group">
-    <h3>Ad Position</h3>
-  <select id="positionSelect">
-  <option value="">Select position</option>
-  <option value="Top">Top</option>
-  <option value="Bottom">Bottom</option>
-  <option value="Popup">Popup</option>
-</select>
-</div>
-
-                
-              
-                
-                <div class="form-group">
-                    <h3>Ad Duration</h3>
-                    <div class="duration-options">
-                        <label class="duration-option">
-                            <input type="radio" name="duration"> 3 days
-                        </label>
-                        <label class="duration-option">
-                            <input type="radio" name="duration"> 7 days
-                        </label>
-                        <label class="duration-option">
-                            <input type="radio" name="duration"> 14 days
-                        </label>
-                        <label class="duration-option">
-                            <input type="radio" name="duration"> 30 days
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="image-section">
-                <div class="image-upload-area">
-                    <div class="upload-icon">+</div>
-                    <div class="upload-text">Upload Ad Image</div>
-                </div>
-                
-                <button class="continue-btn">Continue</button>
-            </div>
-        </div>
-        
-        <div class="divider"></div>
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="panel-header">
+      <div class="logo">
+        <div class="nep-logo">NEPNEWS</div>
+        <div class="title">Ad Manager Panel</div>
+      </div>
+      <div class="user-icon" id="userIcon">👤</div>
     </div>
-<div id="profileModal" class="modal hidden">
+
+    <div class="tabs">
+      <div class="tab active" id="upload-tab">Upload Ad</div>
+      <div class="tab" id="view-tab">View Ads</div>
+    </div>
+
+    <div class="panel-content">
+      <div class="form-section">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Ad Title" />
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Ad website link" />
+        </div>
+        <div class="form-group">
+          <h3>Ad Position</h3>
+          <select id="positionSelect">
+            <option value="">Select position</option>
+            <option value="Top">Top</option>
+            <option value="Bottom">Bottom</option>
+            <option value="Popup">Popup</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <h3>Ad Duration</h3>
+          <div class="duration-options">
+            <label class="duration-option">
+              <input type="radio" name="duration" /> 3 days
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" /> 7 days
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" /> 14 days
+            </label>
+            <label class="duration-option">
+              <input type="radio" name="duration" /> 30 days
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-section">
+        <div class="image-upload-area">
+          <div class="upload-icon">+</div>
+          <div class="upload-text">Upload Ad Image</div>
+        </div>
+
+        <button class="continue-btn">Continue</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+  </div>
+
+  <div id="profileModal" class="modal hidden">
   <div class="modal-content">
     <h3>👤 Editor Profile</h3>
     <p>Email: <span id="editorEmailDisplay"></span></p>
-     <p><strong>Name:</strong> <span id="editorNameDisplay">Ram Shrestha</span></p>
+    <p><strong>Name:</strong> <span id="editorNameDisplay"></span></p>
     <button id="logoutBtn" class="logout-btn">Logout</button>
     <button id="cancelBtn" class="cancel-btn">Cancel</button>
   </div>
 </div>
-    <script src="Admanager_Homepage.js"></script>
+
+  <script src="Admanager_Homepage.js"></script>
 </body>
 </html>

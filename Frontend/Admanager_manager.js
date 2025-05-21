@@ -58,8 +58,12 @@ const profileModal = document.getElementById('profileModal');
 const cancelBtn = document.getElementById('cancelBtn');
 const logoutBtn = document.getElementById('logoutBtn');
 
-// Dummy editor email (you can set this dynamically later)
-document.getElementById('editorEmailDisplay').textContent = 'editor@example.com';
+
+const authorName = localStorage.getItem("authorName") || "Ram Shrestha";
+const email = localStorage.getItem("email") || "example@example.com";
+
+editorNameDisplay.textContent = authorName;
+editorEmailDisplay.textContent = email;
 
 userIcon.addEventListener('click', () => {
     profileModal.classList.toggle('hidden');

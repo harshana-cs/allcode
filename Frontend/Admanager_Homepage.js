@@ -1,21 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Elements
     const continueButton = document.querySelector('.continue-btn');
     const uploadArea = document.querySelector('.image-upload-area');
-   const uploadTab = document.getElementById('upload-tab');
-const viewTab = document.getElementById('view-tab');
-
+    const uploadTab = document.getElementById('upload-tab');
+    const viewTab = document.getElementById('view-tab');
+    const userIcon = document.getElementById('userIcon');
+    const profileModal = document.getElementById('profileModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const profileName = document.getElementById('profileName');
+    const profileEmail = document.getElementById('profileEmail');
 
     let selectedImageFile = null;
 
-    // 🔁 Handle View Ads redirection
+    // Redirect to View Ads page
     if (viewTab) {
-    viewTab.addEventListener('click', function () {
-        window.location.href = 'Admanager_manager.html';
-    });
-}
+        viewTab.addEventListener('click', function () {
+            window.location.href = 'Admanager_manager.html';
+        });
+    }
 
-
-    // 📦 Prefill form if editing (came from Back button)
+    // Prefill form if draft exists
     const draft = JSON.parse(localStorage.getItem('adDataDraft'));
     if (draft) {
         document.querySelector('.form-control[placeholder="Ad Title"]').value = draft.title;
@@ -29,7 +34,6 @@ const viewTab = document.getElementById('view-tab');
             }
         });
 
-        // 🖼️ Restore image preview
         uploadArea.style.backgroundImage = `url('${draft.imageBase64}')`;
         uploadArea.style.backgroundSize = 'cover';
         uploadArea.style.backgroundPosition = 'center';
@@ -42,7 +46,7 @@ const viewTab = document.getElementById('view-tab');
             });
     }
 
-    // 📤 Image Upload Handling
+    // Image upload handling
     if (uploadArea) {
         uploadArea.addEventListener('click', function () {
             const fileInput = document.createElement('input');
@@ -70,7 +74,7 @@ const viewTab = document.getElementById('view-tab');
         });
     }
 
-    // ✅ Continue Button Click
+    // Continue button click handler
     if (continueButton) {
         continueButton.addEventListener('click', function () {
             const title = document.querySelector('.form-control[placeholder="Ad Title"]')?.value;
@@ -94,7 +98,6 @@ const viewTab = document.getElementById('view-tab');
                     imageBase64: e.target.result
                 };
 
-                // 💾 Save final and draft versions
                 localStorage.setItem('adData', JSON.stringify(adData));
                 localStorage.setItem('adDataDraft', JSON.stringify(adData));
 
@@ -103,29 +106,29 @@ const viewTab = document.getElementById('view-tab');
             reader.readAsDataURL(selectedImageFile);
         });
     }
+
+    // Profile modal toggle and user info
+    // Load from localStorage or use defaults
+const authorName = localStorage.getItem("authorName") || "Ram Shrestha";
+const email = localStorage.getItem("email") || "example@example.com";
+
+editorNameDisplay.textContent = authorName;
+editorEmailDisplay.textContent = email;
+    userIcon?.addEventListener('click', () => {
+        profileModal?.classList.toggle('hidden');
+    });
+
+    cancelBtn?.addEventListener('click', () => {
+        profileModal?.classList.add('hidden');
+    });
+
+    logoutBtn?.addEventListener("click", () => {
+        const confirmLogout = confirm("Are you sure you want to logout?");
+        if (confirmLogout) {
+            localStorage.removeItem("authorName");
+            localStorage.removeItem("email");
+            window.location.href = "Mainlogin.html";
+        }
+    });
+
 });
-// Toggle profile modal
-const userIcon = document.getElementById('userIcon');
-const profileModal = document.getElementById('profileModal');
-const cancelBtn = document.getElementById('cancelBtn');
-const logoutBtn = document.getElementById('logoutBtn');
-
-// Dummy editor email (you can set this dynamically later)
-document.getElementById('editorEmailDisplay').textContent = 'editor@example.com';
-
-userIcon.addEventListener('click', () => {
-    profileModal.classList.toggle('hidden');
-});
-
-cancelBtn.addEventListener('click', () => {
-    profileModal.classList.add('hidden');
-});
-
-// Logout
-  logoutBtn.addEventListener("click", () => {
-    const confirmLogout = confirm("Are you sure you want to logout?");
-    if (confirmLogout) {
-      localStorage.removeItem("editorEmail");
-      window.location.href = "login.html";
-    }
-  });

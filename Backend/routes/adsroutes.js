@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const Ad = require("../models/ads");
+const {getTopAd, getBottomAd} = require('../controllers/adsController');
 
 const router = express.Router();
 
@@ -68,5 +69,6 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch ads" });
     }
 });
-
+router.get('/top', getTopAd);
+router.get('/bottom', getBottomAd);
 module.exports = router;

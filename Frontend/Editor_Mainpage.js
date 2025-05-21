@@ -12,53 +12,73 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  async function loadArticles() {
+ async function loadArticles() {
   try {
     const res = await fetch("http://localhost:5000/api/articles");
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
     let articles = await res.json();
 
-    // Filter to only articles with status "review"
-    articles = articles.filter(article => article.status && article.status.toLowerCase() === "review");
-
-    if (!articles.length) {
-      pendingSection.innerHTML = "<p>No pending articles</p>";
-      reviewedSection.innerHTML = "<p>No reviewed articles</p>";
-      return;
-    }
-
-    // Clear existing
+    // Clear previous content
     pendingSection.querySelectorAll(".article").forEach(el => el.remove());
     reviewedSection.querySelectorAll(".article").forEach(el => el.remove());
 
-    articles.forEach(article => {
-  const articleDiv = document.createElement("div");
-  articleDiv.classList.add("article");
+    // Separate into pending and reviewed
+    const pendingArticles = articles.filter(article => article.status?.toLowerCase() === "review");
+    const reviewedArticles = articles.filter(article => {
+      const status = article.status?.toLowerCase();
+      return status === "approved" || status === "rejected";
+    });
 
-  const author = article.author || "Unknown Author";
-  const title = article.title || "No Title";
-  const id = article._id || "";
+    if (!pendingArticles.length) {
+      pendingSection.innerHTML = "<p>No pending articles</p>";
+    } else {
+      pendingArticles.forEach(article => {
+        const articleDiv = document.createElement("div");
+        articleDiv.classList.add("article");
 
-  let statusText = article.status;
-  if (statusText && statusText.toLowerCase() === "review") {
-    statusText = "Pending";
-  }
+        const author = article.author || "Unknown Author";
+        const title = article.title || "No Title";
+        const id = article._id || "";
 
-  let articleContent = `
-    <div>
-      <strong>${author}</strong><br>
-      ${title}<br>
-      <span class="status pending">Status: ${statusText}</span>
-    </div>
-    <button class="view-button" data-id="${id}">View</button>
-  `;
+        articleDiv.innerHTML = `
+          <div>
+            <strong>${author}</strong><br>
+            ${title}<br>
+            <span class="status pending">Status: Pending</span>
+          </div>
+          <button class="view-button" data-id="${id}">View</button>
+        `;
 
-  articleDiv.innerHTML = articleContent;
-  pendingSection.appendChild(articleDiv);
-});
+        pendingSection.appendChild(articleDiv);
+      });
+    }
 
-    reviewedSection.innerHTML = "<p>No reviewed articles</p>";
+    if (!reviewedArticles.length) {
+      reviewedSection.innerHTML = "<p>No reviewed articles</p>";
+    } else {
+      reviewedArticles.forEach(article => {
+        const articleDiv = document.createElement("div");
+        articleDiv.classList.add("article");
+
+        const author = article.author || "Unknown Author";
+        const title = article.title || "No Title";
+        const id = article._id || "";
+        const status = article.status || "Unknown";
+
+        const statusClass = status.toLowerCase() === "approved" ? "approved" : "rejected";
+
+        articleDiv.innerHTML = `
+          <div>
+            <strong>${author}</strong><br>
+            ${title}<br>
+            <span class="status ${statusClass}">Status: ${status}</span>
+          </div>
+        `;
+
+        reviewedSection.appendChild(articleDiv);
+      });
+    }
 
   } catch (error) {
     console.error("❌ Error fetching articles:", error);
@@ -80,8 +100,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadArticles();
 
-  const editorEmail = localStorage.getItem("editorEmail") || "unknown@editor.com";
-  emailDisplay.textContent = editorEmail;
+  const editorEmail = localStorage.getItem("email") || "unknown@editor.com";
+const editorName = localStorage.getItem("authorName") || "Unknown";
+
+document.getElementById("editorEmailDisplay").textContent = editorEmail;
+document.getElementById("editorNameDisplay").textContent = editorName;
 
   userIcon.addEventListener("click", () => {
     modal.classList.remove("hidden");
@@ -94,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
   logoutBtn.addEventListener("click", () => {
     if (confirm("Are you sure you want to logout?")) {
       localStorage.removeItem("editorEmail");
-      window.location.href = "login.html";
+      window.location.href = "Mainlogin.html";
     }
   });
 });

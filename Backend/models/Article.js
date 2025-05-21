@@ -17,7 +17,7 @@ const Article = mongoose.models.Article || mongoose.model(
     author: { type: String, required: true },  // <-- Added field for author name
     status: { 
       type: String, 
-      enum: ["draft", "review", "pending", "approved"], 
+      enum: ["draft", "review", "pending", "approved", "rejected"], 
       default: "draft" 
     }
   }, { timestamps: true }),
