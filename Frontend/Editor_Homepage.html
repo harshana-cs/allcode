@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Editor Panel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="Editor_Homepage.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">NEPNEWS</h1>
+        </div>
+        <h2 class="editor-title">Editor Panel</h2>
+        <div class="user-icon">
+            <span class="material-icons">person</span>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+           <div class="search-bar">
+  <span class="material-icons">search</span> 
+  <input type="text" id="articleSearchInput" placeholder="Search For Articles">
+</div>
+
+            <h3>Recent Articles</h3>
+            <ul class="article-list"></ul>
+        </aside>
+
+        <section class="editor-section">
+            <h2>Review And Edit News Articles</h2>
+    <p><strong>Title:</strong> <span id="article-title"></span></p>
+    <p><strong>Author:</strong> <span id="article-author"></span></p>
+    <p><strong>Category:</strong> <span id="article-category"></span></p> <!-- Added Category Label -->
+    <p><strong>Status:</strong> <span id="article-status"></span></p>
+    <p class="date" id="article-date">Date: </p>
+
+            <button class="view-images">View Uploaded Images</button>
+
+            <div class="editor-box">
+                <textarea id="article-description">Select an article to view details...</textarea>
+                <div class="edit">
+                    <button class="edit_button" id="edit-article-btn">Edit</button>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="showDialog" class="reject-btn">Reject</button>
+                <button id="showResendDialog" class="resend-btn">Resend For Correction</button>
+                <button id="approveButton" class="approve-btn">Approve</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Dialogs -->
+    <div id="dialog" class="dialog">
+        <div class="dialog-content">
+            <h2>Reject Article</h2>
+            <p>Are you sure you want to reject this article?</p>
+            <div class="dialog-buttons">
+                <button id="cancel-btn">Cancel</button>
+                <button id="reject-confirm" class="reject">Reject</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="resendDialog" class="resend-dialog">
+        <div class="resend-dialog-content">
+            <h2>Add suggestions and corrections</h2>
+            <textarea id="suggestionBox" placeholder="Suggestion to the author"></textarea>
+            <div class="resend-upload-container">
+                <div class="upload-button">
+                    <span>+</span>
+                    <p>Upload PDF</p>
+                </div>
+                <button id="submitResend" class="submit-button">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="approveDialog" class="adialog">
+        <p>Article Approved!</p>
+        <button id="approveOkButton">OK</button>
+    </div>
+<div id="profileModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>👤 Editor Profile</h3>
+    <p>Email: <span id="editorEmailDisplay"></span></p>
+     <p><strong>Name:</strong> <span id="editorNameDisplay">Ram Shrestha</span></p>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+    <button id="cancelBtn" class="cancel-btn">Cancel</button>
+  </div>
+</div>
+<div id="imageDialog" class="image-dialog hidden">
+  <div class="image-dialog-content">
+    <h2>Uploaded Images</h2>
+    <div class="image-card-container" id="imageCardContainer">
+      <!-- Image cards will be inserted here -->
+    </div>
+    <button id="closeImageDialog">Close</button>
+  </div>
+</div>
+    <script src="Editor_Homepage.js"></script>
+</body>
+</html>

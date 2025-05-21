@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="articles.admin.css">
+    <script defer src="articles.admin.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">NEPNEWS</h1>
+        </div>
+        <div class="top-bar">
+            <div class="left-section">
+                <div class="icons">
+                    <span class="profile-icon">👤</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <ul id="admin-menu">
+                <!-- <li data-link="homepage.html">Dashboard</li> -->
+                <li data-link="user.admin.html">Manage Users</li>
+                <li data-link="articles.admin.html">Manage Articles</li>
+                <li data-link="ads.admin.html">Manage Ads</li>
+            </ul>
+        </div>
+        
+    <!-- Menu Click Redirect Script -->
+    <script>
+        const menuItems = document.querySelectorAll('#admin-menu li');
+        menuItems.forEach(item => {
+            item.style.cursor = "pointer";
+            item.addEventListener('click', () => {
+                const link = item.getAttribute('data-link');
+                window.location.href = link;
+            });
+        });
+    </script>
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2>Published Articles</h2>
+
+        <div id="articles-container"></div>
+            
+        </div>
+    </div>
+</body>
+</html>

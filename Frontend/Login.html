@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NepNews - Login & Reset</title>
+    <style>
+        body {
+            background-color: transparent;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .login-container, .reset-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        
+        .reset-container {
+            background-color: #e0e0e0;
+            max-width: 500px;
+            padding: 40px;
+            display: none; /* Hidden by default */
+        }
+        
+        .login-container h2, .reset-container h1 {
+            margin-top: 5px;
+        }
+        
+        .reset-container h1 {
+            font-size: 28px;
+            color: #222;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .reset-container p {
+            margin-bottom: 30px;
+            color: #555;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+            text-align: left;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 35px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .icon {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            color: #333;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .password-field-container {
+            position: relative;
+        }
+        
+        .login-password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .change-password-btn {
+            background-color: #2174f3;
+            margin-top: 20px;
+            width: auto;
+            padding: 10px 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #007BFF;
+            text-decoration: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .back-to-login {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #007BFF;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .header {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 12px 20px;
+            font-size: 14px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="header" class="header" style="display: none;">
+        Forgot Password
+    </div>
+
+    <div id="loginPage" class="login-container">
+        <h2>Login To Your NepNews Account</h2>
+        <input type="text" id="emailInput" placeholder="Enter Your Email" required>
+
+
+        <div class="password-field-container">
+            <input type="password" id="loginPassword" placeholder="Enter Your Password" required>
+            <span class="login-password-toggle">👁️</span>
+        </div>
+        <div class="remember-me">
+            <label><input type="checkbox"> Remember me</label>
+            <a id="forgotPasswordLink" class="forgot-password">Forgot Password?</a>
+        </div>
+        <button id="loginBtn">Login</button>
+    </div>
+    
+    <div id="resetPage" class="reset-container">
+        <h1>Reset Your NepNews Password</h1>
+        <p>Forgot your NepNews Password? You can reset it here.</p>
+        
+        <div class="form-group">
+        
+            <input type="password" class="form-control" id="newPassword" placeholder="NewEditorPassword">
+        </div>
+        
+        <div class="form-group">
+          
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
+            <span class="password-toggle">👁️</span>
+        </div>
+        
+        <button class="change-password-btn">Change Password</button>
+        <a id="backToLogin" class="back-to-login">Back to Login</a>
+    </div>
+
+    <script src="Login.js">
+      
+    </script>
+</body>
+</html>

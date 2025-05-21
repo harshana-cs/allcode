@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Article Editor</title>
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    #editor {
+      min-height: 500px;
+      max-height: 700px;
+      overflow-y: auto;
+    }
+
+    .image-gallery {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    .image-gallery img {
+      height: 100px;
+      cursor: grab;
+      border-radius: 8px;
+    }
+    #titleInput {
+      width: 100%;
+      font-size: 1.2rem;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .button-group {
+      margin-top: 20px;
+    }
+    .button-group button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .image-with-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .image-with-text img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+
+    .image-with-text span {
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Advanced Article Editor with Image Resize</h2>
+    
+ <input type="text" id="titleInput" placeholder="Article Title" />
+
+    <div id="editor">Loading article content...</div>
+
+    <h4>Drag & Drop Images into the Article</h4>
+    <div class="image-gallery" id="imageGallery">
+      <img src="https://picsum.photos/id/1015/150/100" draggable="true" alt="Dummy Image 1" />
+      <img src="https://picsum.photos/id/1016/150/100" draggable="true" alt="Dummy Image 2" />
+      <img src="https://picsum.photos/id/1020/150/100" draggable="true" alt="Dummy Image 3" />
+      <img src="https://picsum.photos/id/1035/150/100" draggable="true" alt="Dummy Image 4" />
+      <img src="https://picsum.photos/id/1041/150/100" draggable="true" alt="Dummy Image 5" />
+    </div>
+
+    <div class="button-group">
+      <button onclick="saveArticle()">Save Article</button>
+      <button onclick="goBack()" style="background-color: #888;">Back</button>
+    </div>
+  </div>
+<script>function goBack() {
+  window.location.href = "Editor_Homepage.html";
+}</script>
+  <script src="Article_editor.js"></script>
+</body>
+</html>

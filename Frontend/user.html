@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="user.css" />
+  <script defer src="user.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <h1 class="logo-text">NEPNEWS</h1>
+    </div>
+    <div class="top-bar">
+      <div class="left-section">
+        <div class="icons">
+          <span class="profile-icon">👤</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <ul id="admin-menu">
+        <li data-link="homepage.html">Dashboard</li>
+        <li data-link="user.html">Manage Users</li>
+        <li data-link="articles.html">Manage Articles</li>
+        <li data-link="ads.html">Manage Ads</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <div class="tab-search-container">
+        <div class="tab-section">
+          <div class="tabs">
+            <div class="tab active" data-page="user.html">Authors</div>
+            <div class="tab" data-page="user2.html">Editors</div>
+            <div class="tab" data-page="user3.html">Ad's managers</div>
+          </div>
+        </div>
+        <div class="sidebar-search">
+          <input type="text" id="sidebarSearchInput" placeholder="Search..." />
+          <button onclick="handleSidebarSearch()">🔍</button>
+        </div>
+        <div class="sort" onclick="openModal()">Add +</div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- User data rows will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add User Modal -->
+  <!-- Add User Modal -->
+<div id="addUserModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2>Add New User</h2>
+    <label for="nameInput">Name:</label>
+    <input type="text" id="nameInput" placeholder="Enter name" required />
+    <label for="emailInput">Email:</label>
+    <input type="email" id="emailInput" placeholder="Enter email" required />
+    <label for="passwordInput">Password:</label>
+    <input type="text" id="passwordInput" placeholder="Enter password" required />
+    <button onclick="submitUser()">Submit</button>
+  </div>
+</div>
+</body>
+</html>

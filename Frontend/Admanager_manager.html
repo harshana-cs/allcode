@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEPNEWS Ad Manager Panel</title>
+  <link rel="stylesheet" href="Admanager_manager.css" />
+</head>
+<body>
+  <div class="ad-manager-panel">
+    <!-- Header -->
+      <div class="container">
+        <div class="panel-header">
+            <div class="logo">
+                <div class="nep-logo">NEPNEWS</div>
+                <div class="title">Ad Manager Panel</div>
+            </div>
+            
+            <div class="user-icon" id="userIcon">👤</div>
+        </div>
+        
+       <div class="tabs">
+    <div class="tab " id="upload-tab">Upload Ad</div>
+    <div class="tab active" id="view-tab">View Ads</div>
+</div>
+
+    <!-- Main Content -->
+    <main class="content">
+
+      <!-- Live Ads Section -->
+      <section class="ads-section live-ads">
+        <h2>Live Ads</h2>
+
+        <!-- Ad 1
+        <div class="ad-item">
+          <p><strong>27/02/25</strong></p>
+          <p>Ad title here</p>
+          <p><span class="location tertiary">Tertiary Location</span></p>
+          <p>Time Remaining: <span class="time-remaining red">2/7 days</span></p>
+          
+        </div> -->
+
+        <!-- Ad 2 -->
+        <!-- <div class="ad-item">
+          <p><strong>27/02/25</strong></p>
+          <p>Ad title here</p>
+          <p><span class="location primary">Primary Location</span></p>
+          <p>Time Remaining: <span class="time-remaining green">10/30 days</span></p>
+         
+        </div> -->
+      </section>
+
+      <!-- Recent Ads Section -->
+      <section class="ads-section recent-ads">
+        <h2>Recent Ads</h2>
+
+        <!-- Ad 3 -->
+        <!-- <div class="ad-item">
+          <p><strong>27/02/25</strong></p>
+          <p>Ad title here</p>
+          <p><span class="location tertiary">Tertiary Location</span></p>
+          <p>Duration: 5 Days</p>
+        
+        </div> -->
+      </section>
+    </main>
+  </div>
+<div id="profileModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>👤 Editor Profile</h3>
+    <p>Email: <span id="editorEmailDisplay"></span></p>
+     <p><strong>Name:</strong> <span id="editorNameDisplay">Ram Shrestha</span></p>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+    <button id="cancelBtn" class="cancel-btn">Cancel</button>
+  </div>
+</div>
+  <script src="Admanager_manager.js"></script>
+</body>
+</html>

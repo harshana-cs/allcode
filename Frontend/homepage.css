@@ -1,0 +1,317 @@
+/* Reset & Base */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Container */
+.container {
+    width: 97%;
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #20232a;
+    padding: 10px 20px;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-text {
+    background-color: #A61419;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 1px;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    align-items: center;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.icons span {
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.icons span:hover {
+    transform: scale(1.2);
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 20px;
+    width: 250px;
+    transition: box-shadow 0.3s;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    margin-left: 8px;
+    width: 100%;
+}
+
+.search-bar:focus-within {
+    box-shadow: 0 0 5px rgba(166, 20, 25, 0.5);
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Create New */
+.create-new {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.create-box {
+    margin-left: 20px;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #A61419;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.create-box:hover {
+    background: #880f13;
+    transform: scale(1.05);
+}
+
+/* Articles */
+.articles .article {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(233, 231, 231, 0.1);
+    transition: transform 0.2s, background 0.3s;
+}
+
+.articles .article:hover {
+    background-color: #f9e9ea;
+    transform: translateY(-3px);
+}
+
+.articles .title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.articles .title:hover {
+    color: #A61419;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 60%;
+    max-width: 700px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+.tab-section {
+    margin-left: 20px;
+    width: 98%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    padding: 0;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: white;
+    border-right: 1px solid #ccc;
+    transition: background 0.3s, color 0.3s;
+}
+
+.tab:last-child {
+    border-right: none;
+}
+
+.tab:hover {
+    background-color: #f7f4f4;
+    transform: scale(1.05);
+}
+
+.tab.active {
+    background-color: #A61419;
+    color: white;
+    font-weight: bold;
+}
+
+/* --- Drafts Container --- */
+#drafts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* Draft Card Styles */
+.draft-card {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative; /* Added to help with absolute positioning if needed */
+}
+
+.draft-card:hover {
+    transform: translateY(-5px);
+}
+
+.draft-cover {
+    height: 66%;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.draft-card h3 {
+    font-size: 16px;
+    margin: 10px;
+    flex-grow: 1;
+    color: #333;
+    line-height: 1.2;
+}
+
+.continue-btn {
+    margin: 0 10px 10px 10px;
+    padding: 8px 12px;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.2s ease;
+    margin-top: auto; /* Push to bottom of flex container */
+}
+
+.continue-btn:hover {
+    background-color: #A61419;
+}
+.profile-container {
+  position: relative;
+  display: inline-block;
+}
+
+#profileDropdown {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  right: 0;
+  top: 40px;
+  width: 200px;
+  z-index: 100;
+}
+
+
+.profile-dropdown p {
+  margin: 6px 0;
+}
+
+.profile-dropdown button {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-dropdown button:hover {
+  background-color: #c0392b;
+}

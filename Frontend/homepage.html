@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Author Panel</title>
+  <link rel="stylesheet" href="homepage.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <h1 class="logo-text">NEPNEWS</h1>
+    </div>
+    
+    <div class="top-bar">
+      <div class="left-section">
+        <div class="search-bar">
+          <input type="text" placeholder="Search For Articles" />
+          <span class="material-icons">search</span>
+        </div>
+        <div class="icons">
+          <span class="notification-icon">🔔</span>
+          <!-- <span class="profile-icon">👤</span>
+          <div class="profile-container"> -->
+    <span class="profile-icon" id="profileIcon">👤</span>
+    <div class="profile-dropdown" id="profileDropdown"></div>
+  </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="main-content">
+    <div class="create-new">
+      <div class="create-box">╋<br>Create New</div>
+    </div>
+    
+    <div class="tab-section">
+      <div class="tabs">
+        <div class="tab active" data-page="homepage.html">Draft</div>
+        <div class="tab" data-page="review.html">Sent for review</div>
+        <div class="tab" data-page="published.html">Published</div>
+        <div class="tab" data-page="rejected.html">Rejected</div>
+      </div>
+    </div>
+    
+    <div class="articles" id="drafts-container">
+      <!-- Draft articles will load here -->
+    </div>
+  </div>
+  
+  <script src="homepage.js"></script>
+</body>
+</html>

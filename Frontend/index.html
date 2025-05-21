@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NepNews</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <!-- Header Left: Displays the user's location and current date -->
+            <div class="header-left">
+                <p id="location">Fetching location...</p>
+                <p id="date">Fetching date...</p>
+              </div>
+
+            <!-- Header Center: Logo of the website -->
+<!-- Header Center: Logo of the website -->
+<div class="logo-box">
+    <a href="index.html" style="text-decoration: none;">
+      <h1 class="logo">NEP<span>NEWS</span></h1>
+    </a>
+  </div>
+  
+
+            <!-- Header Right: User and Search icons -->
+            <div class="header-right">
+                <!-- User Icon: Opens the login/signup modal when clicked -->
+                <span class="user-icon" id="userIcon" onclick="openAuthModal()">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+                
+<!-- Always Visible Search Form -->
+<div id="searchForm">
+    <input type="text" id="searchInput" placeholder="Search news...">
+    <button onclick="searchNews()">Submit</button>
+    
+  </div>
+
+            <!-- Profile Section (Initially hidden) -->
+            <div id="profileModal" style="display:none;">
+                <div id="profileDetails">
+                    <h3 id="profileName"></h3> <!-- Display user's name here -->
+                    <p id="profileEmail"></p> <!-- Display user's email here -->
+                    <p id="profilePhone"></p> <!-- Display user's phone here -->
+                    <!-- You can add other profile details here -->
+                </div>
+                <button onclick="logout()">Logout</button>
+            </div>
+            <img id="profileIcon" src="" alt="Profile"
+            style="display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer;" 
+            onclick="toggleProfileModal()" />
+            
+        <!-- Authentication Modal (contains login, signup, and password reset forms) -->
+        <div id="authModal" class="auth-modal" style="display: none;">
+
+            <div class="auth-modal-content">
+                <!-- Close button for the modal -->
+                <span class="close-btn" onclick="closeAuthModal()">✖</span>
+
+                <!-- Container that holds all authentication-related forms -->
+                <div id="authFormContainer">
+
+                    <!-- Login Form -->
+                    <div id="loginForm">
+                        <h2>Login To Your NepNews Account</h2>
+
+                        <!-- Email input field -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="Enter Your Email">
+                        </div>
+                        <span id="emailError" class="error"></span>
+
+                        <!-- Password input field with toggle visibility icon -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter Your Password">
+                            <i class="fa-solid fa-eye" onclick="togglePassword('loginPassword', this)"></i>
+                        </div>
+                        <span id="passwordError" class="error"></span>
+
+                        <!-- Remember me and forgot password options -->
+                        <div class="options">
+                            <label><input type="checkbox"> Remember me</label>
+                            <a href="javascript:void(0)" onclick="toggleForm('forgotPassword')">Forgot Password?</a>
+                        </div>
+
+
+                        <!-- Login button -->
+                        <button class="auth-btn" onclick="event.preventDefault(); validateLogin()">Login</button>
+                        <div id="popupMessage" class="popup hidden">
+                            <span id="popupText"></span>
+                        </div>
+
+
+                        <!-- Divider with social media login options -->
+                        <div class="social-login">
+                            <div class="line-container">
+                                <span>Or sign in with:</span>
+                            </div>
+                            <div class="social-icons">
+                                <button class="social-btn apple-btn" aria-label="Login with Apple">
+                                    <i class="fa-brands fa-apple"></i>
+                                </button>
+                                <button class="social-btn google-btn" aria-label="Login with Google">
+                                    <i class="fa-brands fa-google"></i>
+                                </button>
+                                <button class="social-btn facebook-btn" aria-label="Login with Facebook">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Link to switch to signup form -->
+                        <div class="bottom-text">
+                            Don't have an account? <a href="javascript:void(0)" onclick="toggleForm('signup')">Sign Up</a>
+                        </div>
+                    </div>
+
+                        <!-- Signup Form (hidden by default) -->
+                        <div id="signupForm" style="display: none;">
+                            <h2>Create Your NepNews Account</h2>
+
+                            <!-- Full name input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" placeholder="Full Name">
+                            </div>
+
+                            <!-- Phone number input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" placeholder="Enter Your Phone Number">
+                            </div>
+
+                            <!-- Email input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" placeholder="Enter Your Email">
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="signupPassword" placeholder="Enter Your Password">
+                                <i class="fa-solid fa-eye" onclick="togglePassword('signupPassword', this)"></i>
+                            </div>
+
+                            <!-- Confirm password input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="signupConfirmPassword" placeholder="Confirm Password">
+                                <i class="fa-solid fa-eye" onclick="togglePassword('signupConfirmPassword', this)"></i>
+                            </div>
+
+                            <!-- Terms and Conditions checkbox -->
+                            <label class="terms">
+                                <input type="checkbox"> I agree to the <a href="#">Terms & Conditions</a>
+                            </label>
+
+                            <!-- Signup button -->
+                            <button class="auth-btn" onclick="handleSignup()">Create Account</button>
+
+
+                            <!-- Link to switch back to login form -->
+                            <div class="bottom-text">
+                                Already Have An Account? <a href="javascript:void(0)" onclick="toggleForm('login')">Login</a>
+                            </div>
+                        </div>
+
+                    <!-- Forgot Password Form -->
+                    <div id="forgotPasswordForm" class="forgot-password-section">
+                        <h2>Reset Your Password</h2>
+
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="resetEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div id="passwordResetMessage" class="forgot-password-section">
+                            <!-- //<button class="auth-btn" id="resetButton">Send Reset Link</button> -->
+                            <div id="passwordResetMessage" class="forgot-password-section"></div>
+
+                          </div>
+                    </div>
+
+                </div> <!-- End of authFormContainer -->
+            </div> <!-- End of auth-modal-content -->
+        <!-- </div> End of auth-modal -->
+    </header>
+
+
+    <main>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="javascript:void(0)" onclick="loadCategory('home')">Home</a></li>
+                <li><a href="politics.html">Politics</a></li>
+                <li><a href="technology.html">Technology</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="earth.html">Earth</a></li>
+            </ul>
+        </nav>
+        <div class="black-line"></div>
+        <h1>Latest News</h1>
+        <!-- <div class="news-container"></div> -->
+        
+        
+        <main>
+            <main>
+                <div class="nav-ad-container">
+                    <div class="black-line"></div>
+                    <img id="top-ad-image" src="" alt="Advertisement">
+                    <span id="top-ad-label" class="ad-label">Advertisement</span>
+                    <div class="black-line"></div>
+                </div>
+        
+<div id="home" class="news-category">
+    <!-- News Item 1 -->
+    <div class="news-container">
+        <img src="https://www.fiscalnepal.com/wp-content/uploads/2025/04/starting--scaled.jpg" alt="WordCamp Nepal 2025">
+        <h4>WordCamp Nepal 2025 Concludes in Kathmandu</h4>
+        <p class="short-desc">The two-day event brought together WordPress enthusiasts and professionals to share insights, collaborate on projects, and explore innovations within the open-source community.</p>
+        <p class="time-country"><span class="time">2hr ago</span> | <span class="country">Nepal</span></p>
+    </div>
+
+
+</div>    
+            <!-- Kathmandu previous/politics now Category -->
+            <div id="politics" class="news-category" style="display: none;">
+<!-- Article 4: Prime Minister Cabinet Reshuffle -->
+ 
+<div class="article-card" data-index="3">
+    <h4>Prime Minister Announces Cabinet Reshuffle</h4>
+    <img src="https://via.placeholder.com/150" alt="Cabinet Reshuffle Image">
+    <p class="short-desc">
+      Prime Minister Pushpa Kamal Dahal has announced a significant reshuffle of the federal cabinet to address coalition concerns and improve governance, appointing new ministers in key portfolios like Home Affairs, Finance, Foreign Affairs, and Education...
+    </p>
+    <p class="time-country">Published by Sanjita Sharma on 12/05/2025</p>
+    <a href="#" class="read-more">Read More</a>
+    <div class="full-description" style="display:none;">
+        In a strategic political move, Prime Minister Pushpa Kamal Dahal has announced a significant reshuffle of the federal cabinet in an effort to address growing concerns within the ruling coalition and meet public expectations for good governance. The reshuffle saw the appointment of new faces in key ministries including Home Affairs, Finance, Foreign Affairs, and Education. Senior leader Ramesh Shrestha has been appointed as the new Minister of Home Affairs, replacing Bal Krishna Khand, while Dr. Meena Gautam, a well-known economist, has taken over the Finance Ministry. Former ambassador to India, Suman Adhikari, has been given the Foreign Affairs portfolio. In the Ministry of Education, youth leader Binita KC was brought in, signaling the government’s commitment to youth and innovation in policymaking. During a press conference at Singha Durbar, the Prime Minister stated that the reshuffle was necessary to 'revitalize the administration and deliver results to the people.He acknowledged recent criticism regarding government transparency and promised a more accountable and responsive cabinet moving forward.The reshuffle comes amid increasing pressure from coalition partners and civil society groups calling for stronger leadership, anti-corruption measures, and better public service delivery.Political analysts suggest this move may be a calculated step to maintain unity within the coalition and improve the government's image before the next budget session. Opposition leaders have responded cautiously, urging the new ministers to prioritize national interest over party politics. The public reaction has been mixed, with some welcoming the inclusion of fresh faces and others skeptical about real change. The new ministers are expected to be sworn in later this week at the President’s Office in Sheetal Niwas. 
+    </div>
+  </div>
+<!-- Article 4: Prime Minister Cabinet Reshuffle -->
+<div class="article-card" data-index="4">
+    <h4>Prime Minister Announces Cabinet Reshuffle</h4>
+    <img src="https://via.placeholder.com/150" alt="Cabinet Reshuffle Image">
+    <p class="short-desc">
+      Prime Minister Pushpa Kamal Dahal has announced a significant reshuffle of the federal cabinet to address coalition concerns and improve governance, appointing new ministers in key portfolios like Home Affairs, Finance, Foreign Affairs, and Education...
+    </p>
+    <p class="time-country">Published by Sanjita Sharma on 12/05/2025</p>
+    <a href="#" class="read-more">Read More</a>
+    <div class="full-description" style="display:none;">
+      In a strategic political move, Prime Minister Pushpa Kamal Dahal has reshuffled the federal cabinet to revitalize the administration and deliver results. New appointments include Ramesh Shrestha as Minister of Home Affairs, Dr. Meena Gautam as Finance Minister, Suman Adhikari handling Foreign Affairs, and youth leader Binita KC leading Education. The reshuffle aims to improve transparency and accountability amid rising pressure from coalition partners and civil society.
+      <br><br><strong>Political Context:</strong> The move seeks to maintain coalition unity and improve government image before the next budget session.
+      <br><strong>Public Reaction:</strong> Mixed responses range from optimism about fresh faces to skepticism over real change.
+    </div>
+  </div>
+               
+  </div>
+    
+        
+            <!-- Sports/technology now Category -->
+            <div id="technology" class="news-category" style="display: none;">
+                <div class="articles-wrapper" id="article-feed"></div>
+               
+
+                    <!-- Article 1 -->
+                    <div class="article-card" data-index="0">
+                      <h4>Tech Innovation</h4>
+                      <img src="https://via.placeholder.com/150" alt="Tech Innovation Image">
+                      <p class="short-desc">
+                        Latest advancements in AI and robotics. Tech innovation refers to the development and application of new technologies that significantly improve or entirely transform industries...
+                      </p>
+                      <p class="time-country">Published by Jane Doe on 15/05/2025</p>
+                      <a href="#" class="read-more">Read More</a>
+                      <div class="full-description" style="display:none;">
+                        Latest advancements in AI and robotics. Tech innovation refers to the development and application of new technologies that significantly improve or entirely transform industries...
+                        <br><br><strong>Key Areas of Recent Tech Innovation</strong><br>
+                        AI, Robotics, Quantum Computing, 5G, Health Tech, and Green Technologies are reshaping industries and lifestyles.
+                        <br><strong>Societal Impact:</strong> Education, business, daily life, and jobs are being transformed by these breakthroughs.
+                      </div>
+                    </div>
+                
+                    <!-- Article 2 -->
+                    <div class="article-card" data-index="1">
+                      <h4>Space Exploration Breakthrough</h4>
+                      <img src="https://via.placeholder.com/150" alt="Space Exploration Image">
+                      <p class="short-desc">
+                        NASA has unveiled its ambitious plan to establish a permanent lunar base by 2030. The project, known as Artemis Base Camp...
+                      </p>
+                      <p class="time-country">Published by Alice Johnson on 14/05/2025</p>
+                      <a href="#" class="read-more">Read More</a>
+                      <div class="full-description" style="display:none;">
+                        NASA plans to establish Artemis Base Camp by 2030 for long-term lunar research, paving the way to Mars and beyond.
+                      </div>
+                    </div>
+                
+
+                
+                    <!-- Article 4 -->
+                    <div class="article-card" data-index="3">
+                      <h4>Artificial Intelligence in Healthcare</h4>
+                      <img src="https://via.placeholder.com/150" alt="AI Healthcare Image">
+                      <p class="short-desc">
+                        AI-powered diagnostic systems are revolutionizing the healthcare industry, enabling faster and more accurate disease detection...
+                      </p>
+                      <p class="time-country">Published by David Patel on 11/05/2025</p>
+                      <a href="#" class="read-more">Read More</a>
+                      <div class="full-description" style="display:none;">
+                        AI helps detect diseases earlier, supports precision medicine, and improves surgery outcomes using AI-driven robotics.
+                      </div>
+                    </div>
+                
+                  </div>
+                
+                  <!-- Full Article Viewer -->
+                  <div id="full-article-container">
+                    <button id="back-btn">← Back</button>
+                    <div class="full-article-content">
+                      <h2 id="full-title"></h2>
+                      <img id="full-image" src="" alt="Full Article Image" style="max-width:100%; height:auto;">
+                      <p class="time-country" id="full-author-date"></p>
+                      <p id="full-description-text"></p>
+                    </div>
+                  </div>
+    
+        
+            <!-- Culture Category -->
+            <div id="culture" class="news-category" style="display: none;">
+               
+                <div class="news-item">
+                    <img src="https://dmh.lacounty.gov/wp-content/uploads/2021/10/LACDMH_Connecting-Our-Community_cc.png" alt="News Image">
+                    <h4>Culture Event Updates</h4>
+                    <p class="short-desc">Latest news in culture...</p>
+                    <p class="time-country"><span class="time">2hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://static01.nyt.com/images/2023/10/15/magazine/15Mag-Culture-2/15Mag-Culture-2-superJumbo.jpg" alt="News Image">
+                    <h4>Traditional Events</h4>
+                    <p class="short-desc">Updates on traditional cultural events...</p>
+                    <p class="time-country"><span class="time">5hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://www.tusktravel.com/blog/wp-content/uploads/2021/02/Bisket-Jatra-festival-Bhaktapur-Nepal.jpg" alt="News Image">
+                    <h4>Cultural Heritage Sites</h4>
+                    <p class="short-desc">News about cultural heritage in Nepal...</p>
+                    <p class="time-country"><span class="time">8hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+        
+            <!-- Arts Category -->
+            <div id="arts" class="news-category" style="display: none;">
+                
+                <div class="news-item">
+                    <img src="https://cdn.britannica.com/87/2087-050-8B2A01CD/Mona-Lisa-oil-wood-panel-Leonardo-da.jpg" alt="News Image">
+                    <h4>Artistic Events</h4>
+                    <p class="short-desc">News about artistic events and exhibitions...</p>
+                    <p class="time-country"><span class="time">1hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://images.shiksha.com/mediadata/images/articles/1696324181phpqLxRFH.jpeg" alt="News Image">
+                    <h4>Artist Interviews</h4>
+                    <p class="short-desc">Interviews with famous artists...</p>
+                    <p class="time-country"><span class="time">3hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQI9cMQiV2vu4oWr3hg5_KEzNUVWRH6-aDrA&s" alt="News Image">
+                    <h4>New Art Releases</h4>
+                    <p class="short-desc">The latest in the world of art...</p>
+                    <p class="time-country"><span class="time">5hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+            <!-- Earth Category -->
+<div id="earth" class="news-category" style="display: none;">
+    <div class="articles-wrapper"> <!-- Add this wrapper -->
+  
+      <!-- Article 1 -->
+      <div class="article-card" data-index="2">
+        <h4>Climate Change Initiatives</h4>
+        <img src="https://via.placeholder.com/150" alt="Climate Change Image">
+        <p class="short-desc">
+          Governments around the world have announced stringent environmental policies to combat the escalating climate crisis...
+        </p>
+        <p class="time-country">Published by Sophia Lee on 12/05/2025</p>
+        <a href="#" class="read-more">Read More</a>
+        <div class="full-description" style="display:none;">
+          New policies aim to reduce carbon emissions by 50% in 10 years through stricter regulations on fossil fuels and waste.
+        </div>
+      </div>
+  
+      <!-- Article 2 -->
+      <div class="article-card" data-index="1">
+        <h4>Space Exploration Breakthrough</h4>
+        <img src="https://via.placeholder.com/150" alt="Space Exploration Image">
+        <p class="short-desc">
+          NASA has unveiled its ambitious plan to establish a permanent lunar base by 2030. The project, known as Artemis Base Camp...
+        </p>
+        <p class="time-country">Published by Alice Johnson on 14/05/2025</p>
+        <a href="#" class="read-more">Read More</a>
+        <div class="full-description" style="display:none;">
+          NASA plans to establish Artemis Base Camp by 2030 for long-term lunar research, paving the way to Mars and beyond.
+        </div>
+      </div>
+  
+    </div> <!-- End wrapper -->
+  </div>
+  
+        
+            
+        </main>
+        <div class="nav-ad-container">
+            <div class="black-line"></div>
+            <img id="bottom-ad-image" src="" alt="Bottom Advertisement">
+            <span id="bottom-ad-label" class="ad-label">Bottom Advertisement</span>
+            <div class="black-line"></div>
+        </div>
+
+        <!-- <div id="popup-ad" class="popup-ad hidden">
+            <div class="popup-content">
+              <button id="close-popup" class="close-btn">&times;</button>
+              <a href="https://www.booking.com/index.en-gb.html?aid=2369666..." target="_blank" id="popup-link">
+                <img id="popup-image" src="http://localhost:5000/uploads/1747234988889.jpg" alt="Booking.com Advertisement">
+              </a>
+            </div>
+          </div> -->
+<footer>
+    <div>Follow Us On 
+        <i class="fab fa-facebook"></i> 
+        <i class="fab fa-instagram"></i> 
+        <i class="fab fa-twitter"></i>
+    </div>
+    <div>© 2025 NepNews by DevSphere | All Rights Reserved</div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+body {
+    background-color: #f2f2f2;
+    height: 100%;  /* Full height */
+    margin: 0;
+    display: flex;
+    flex-direction: column;  /* Stack elements vertically */
+}
+
+.content {
+    flex: 1;  /* Take up available space */
+}
+
+/* Updated Header Styles to match index2.html */
+header {
+    background: black;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: relative;
+}
+
+/* Left section (location and date) */
+.header-left {
+    color: white;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Center logo container */
+.header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e53946;
+    padding: 12px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1;
+}
+
+
+
+/* Logo text */
+.logo {
+    font-size: 32px;
+    color: white;
+    font-weight: 700;
+}
+
+/* Profile image container (right side) */
+header a {
+    display: flex;
+    align-items: center;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+.sidebar {
+    background-color: #f4f4f4;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.sidebar h3 {
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar li.active, .sidebar li:hover {
+    background-color: #d80000;
+    color: white;
+    border-radius: 5px;
+}
+
+.sidebar li .icon {
+    margin-right: 10px;
+}
+
+.profile-card {
+    background-color: #eef0f3;
+    padding: 30px;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Center items vertically */
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px; /* Space between the image and text */
+}
+
+.profile-card h2 {
+    text-align: left; /* Align text to the left */
+    margin-bottom: 5px;
+    text-transform: capitalize; /* Capitalize the text */
+}
+
+.profile-card .email {
+    text-align: left; /* Align text to the left */
+    font-size: 0.9em;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+
+.info h3 {
+    margin-bottom: 10px;
+    color: #d80000;
+}
+
+.info p {
+    margin-bottom: 8px;
+}
+
+/* Ensuring the entire page uses flexbox layout */
+body, html {
+    height: 100%;  /* Full height */
+    margin: 0;
+    display: flex;
+    flex-direction: column;  /* Stack elements vertically */
+}
+
+.content {
+    flex: 1;  /* Take up available space */
+}
+
+footer {
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    font-size: 0.9em;
+    width: 100%; /* Ensure it spans the full width */
+    position: relative;
+}
+
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    margin: 15% auto;
+    width: 300px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-content button {
+    padding: 8px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:first-child {
+    background-color: #d80000;
+    color: white;
+}
+
+.modal-content button:last-child {
+    background-color: #f4f4f4;
+}
+.content-section {
+    background-color: #eef0f3;
+    padding: 30px;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .header {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar h3 {
+    color: #fff;
+}
+
+body.dark-mode .sidebar ul li {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar ul li:hover {
+    background-color: #3c3c3c;
+}
+
+body.dark-mode .icon {
+    color: #e0e0e0;
+}
+
+body.dark-mode .logo {
+    color: #fff;
+}
+
+body.dark-mode a {
+    color: #90caf9;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+

@@ -1,0 +1,951 @@
+/* Resetting default styles and applying base font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Basic body styling */
+body {
+    background-color: white;
+    line-height: 1.6;
+}
+
+/* Header container layout */
+.header-container {
+    background: black;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: relative;
+}
+
+/* Left section of the header (location & date) */
+.header-left {
+    color: white;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Center logo box */
+.logo-box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e53946;
+    padding: 12px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Main logo styling */
+.logo {
+    font-size: 32px;
+    color: white;
+    font-weight: 700;
+}
+
+/* Right section of the header (icons) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Styling for user and search icons */
+.user-icon, .search-icon {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+  
+
+/* Container for search input and button */
+#searchForm {
+    display: flex;
+    align-items: center; /* Aligning the input and button vertically */
+    justify-content: space-between; /* Distribute space between input and button */
+    background-color: #f5f5f5;
+    padding: 6px 10px; /* Reduced padding */
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Reduced width */
+    max-width: 300px; /* Reduced max width */
+    margin: 10px auto; /* Center the search form */
+}
+
+/* Input Styling */
+#searchInput {
+    padding: 4px 8px; /* Reduced padding */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    width: 70%; /* Input takes slightly less space */
+    font-size: 12px; /* Smaller font size */
+    transition: box-shadow 0.2s ease;
+}
+
+#searchInput:focus {
+    box-shadow: 0 0 4px rgba(229, 9, 20, 0.5);
+}
+
+/* Submit Button Styling */
+button[onclick="searchNews()"] {
+    background-color: #e50914; /* NEPNEWS red */
+    color: white;
+    border: none;
+    padding: 4px 8px; /* Reduced padding */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px; /* Smaller font size */
+    transition: background-color 0.2s ease;
+    margin-left: 8px; /* Reduced margin between the input and button */
+}
+
+button[onclick="searchNews()"]:hover {
+    background-color: #c40812;
+}
+
+  
+
+/* ===== Modal Styles for Login/Signup/Forgot Password ===== */
+
+/* Modal background overlay */
+.auth-modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+}
+
+/* Main modal box */
+.auth-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    position: relative;
+}
+
+/* Close button inside modal */
+.auth-modal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Group wrapper for input + icon */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+/* Input fields inside input-group */
+.input-group input {
+    border: none;
+    background: none;
+    width: 100%;
+    font-size: 14px;
+    outline: none;
+    padding: 5px;
+}
+
+/* Icons inside input-group */
+.input-group i {
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+}
+
+/* Main authentication button */
+.auth-btn {
+    background: #3b82f6;
+    color: white;
+    font-size: 16px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Hover effect for auth button */
+.auth-btn:hover {
+    background: #2563eb;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    font-size: 13px;
+    text-align: left;
+    margin-left: 5px;
+    display: block;
+}
+
+/* Options row: remember me + forgot password */
+.options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin: 10px 0;
+}
+
+/* Forgot password link */
+.options a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Social Login Section ===== */
+
+/* Container for the whole social login block */
+.social-login {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Line with "Or sign in with:" text */
+.line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.line-container::before,
+.line-container::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+    margin: 0 10px;
+}
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    z-index: 10000;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hidden {
+    display: none;
+}
+
+.popup.success {
+    background-color: #28a745; /* Green for success */
+}
+
+.popup.error {
+    background-color: #dc3545; /* Red for error */
+}
+
+
+/* "Or sign in with" text */
+.line-container span {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Social media icon buttons row */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Social buttons appearance */
+.social-btn {
+    font-size: 24px;
+    padding: 10px 15px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Hover effect on social buttons */
+.social-btn:hover {
+    background: #e0e0e0;
+}
+
+/* Individual brand coloring */
+.apple-btn i {
+    color: #000;
+}
+
+.google-btn i {
+    color: #ea4335;
+}
+
+.facebook-btn i {
+    color: #1877f2;
+}
+
+.social-btn:focus {
+    outline: none;
+}
+
+/* Bottom links like “Already have an account?” */
+.bottom-text {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.bottom-text a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bottom-text a:hover {
+    text-decoration: underline;
+}
+
+/* Terms and conditions checkbox + link */
+.terms {
+    font-size: 13px;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.terms a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* Visibility control for different form sections */
+#loginForm, #signupForm, #forgotPasswordForm, #passwordResetMessage {
+    display: none; /* Hide all forms by default */
+}
+
+#loginForm {
+    display: block; /* Show login form initially */
+}
+
+
+
+/* NAVIGATION BAR */
+.main-nav {
+    background: white;
+    padding: 10px 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav ul li {
+    margin: 0 10px;
+}
+
+.main-nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    transition: 0.3s;
+    
+}
+
+.main-nav ul li a:hover {
+    background: #e53946;
+    border-radius: 5px;
+}
+.news-category {
+    display: none;
+    margin: 20px 0;
+}
+
+/* Masonry Grid Layout */
+.news-category {
+    column-count: 3; /* Adjust for responsiveness */
+    column-gap: 20px;
+    padding: 20px;
+}
+
+.news-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    break-inside: avoid; /* Prevent breaking inside columns */
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.news-item:hover {
+    transform: scale(1.02);
+}
+
+/* Full News View */
+.full-news {
+    display: none;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.full-news-content img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+#back-btn {
+    width: auto;
+
+    color: red;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+
+/* NAVBAR ADVERTISEMENT */
+.nav-ad-container {
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background-color: white;
+}
+.nav-ad-container img {
+    width: 400px; /* Adjust this as needed */
+    height: 100px; /* Maintain aspect ratio */
+}
+
+/* Black Lines */
+.black-line {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin: 4px 0;
+}
+
+/* AD IMAGE - Make it smaller and fit within the container */
+.nav-ad img {
+    width: 50%; /* Set width to 50% of the container to make it smaller */
+    max-width: 300px; /* Limit the max width to 300px to avoid oversized images */
+    height: auto; 
+}
+
+/* "Advertisement" label */
+.ad-label {
+    font-size: 12px;
+    font-weight: 300;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    font-family: 'Merriweather', serif;
+}
+
+
+/* BLACK LINES ABOVE AND BELOW AD */
+.black-line {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+}
+
+/* Adding Flex Layout for News Grid */
+/* News Card Container */
+.latest-news .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.main-news {
+    padding: 20px;
+}
+
+.news-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.side-news, .main-news-card {
+    flex: 1;
+    position: relative; /* Required for the overlay */
+    overflow: hidden;  /* Ensures the overlay doesn't exceed boundaries */
+}
+
+/* Image Styles */
+.side-news img, .main-news-card img {
+    width: 100%;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* Text Styles */
+.side-news p, .main-news-card h3, .main-news-card p {
+    margin: 10px 0;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Thinner Overlay Effect */
+.side-news::after, .main-news-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2); /* Thinner white overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover Effects */
+.side-news:hover::after, .main-news-card:hover::after {
+    opacity: 1; /* Show overlay */
+}
+
+.side-news:hover img, .main-news-card:hover img {
+    transform: scale(1.05); /* Slightly enlarge image on hover */
+}
+
+.side-news:hover p, .main-news-card:hover h3, .main-news-card:hover p {
+    color: #e53946; /* Change text color on hover */
+    text-decoration: underline; /* Add underline effect */
+}
+
+/* Separator Styling */
+.separator {
+    height: 1px;
+    background-color: black;
+    margin: 9px 0;
+}
+    .additional-news-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .additional-news-item img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .additional-news-item p {
+        margin: 0;
+    }
+
+/* Hide full content by default */
+.full-content {
+    display: none;
+}
+
+/* Optional styles to make the transition smoother */
+.read-more {
+    font-size: 1rem;
+    color: #ff0000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+ .articles-wrapper {
+        display: flex;
+        flex-direction: column; /* stack children vertically */
+        gap: 20px; /* space between article feed and full article */
+        width: 100%;
+      }
+      
+      .article-card {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+      }
+      
+      .article-card img {
+        width: 100%;
+        height: auto;
+        max-width: 150px;
+      }
+      
+      #full-article-container {
+        display: none;
+        padding: 20px;
+        border: 1px solid #999;
+        background-color: #fff;
+        border-radius: 10px;
+      }
+      
+      #back-btn {
+        margin-bottom: 15px;
+      }
+
+/* News Category Container */
+.news-category {
+    display: none; /* Initially hidden, shown when selected */
+    margin-top: 20px;
+}
+
+.news-category h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* News Item Styling */
+.news-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.news-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 2px solid #eee;
+}
+
+.news-item h4 {
+    font-size: 20px;
+    color: #333;
+    margin: 15px 20px;
+    font-weight: bold;
+}
+
+.news-item .short-desc {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 20px;
+    line-height: 1.5;
+    height: 60px; /* To maintain uniformity */
+    overflow: hidden;
+}
+
+.news-item .time-country {
+    font-size: 14px;
+    color: #999;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.news-item .time-country .time,
+.news-item .time-country .country {
+    font-weight: 600;
+}
+
+/* Optional - When a news category is selected */
+.news-category.show {
+    display: block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .news-item {
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .news-item img {
+        height: 200px;
+    }
+
+    .news-item h4 {
+        font-size: 18px;
+        margin: 10px 15px;
+    }
+
+    .news-item .short-desc {
+        font-size: 14px;
+        margin: 10px 15px;
+    }
+
+    .news-item .time-country {
+        font-size: 12px;
+        margin: 5px 15px;
+    }
+}
+ 
+
+/* .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+    }
+
+    .modal-content {
+        position: relative;
+        margin: 5% auto;
+        padding: 20px;
+        background-color: white;
+        max-width: 900px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .modal-main-content {
+        width: 70%;
+        padding: 20px;
+    }
+
+    .modal-image {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .additional-news {
+        width: 30%;
+        padding: 20px;
+        border-left: 1px solid #ccc;
+    } */
+    .news-container {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .section-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-left: 5px solid #bb1919;
+        padding-left: 10px;
+    }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .news-item {
+        background: white;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        transition: transform 0.2s;
+    }
+
+    .news-item:hover {
+        transform: scale(1.02);
+    }
+
+    .news-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 3px;
+    }
+
+    .news-item h4 {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #bb1919;
+    }
+
+    .short-desc {
+        font-size: 14px;
+        color: #333;
+        margin: 10px 0;
+    }
+
+    .time-country {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .time-country span {
+        margin-right: 5px;
+    }
+    footer {
+        background-color: white;
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+        font-size: 0.9em;
+    }
+    
+    .popup-ad {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 1s ease;
+      }
+      
+      .popup-ad.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .popup-content {
+        position: relative;
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        max-width: 400px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      }
+      
+      .popup-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: #333;
+        font-weight: bold;
+      }
+      .articles-wrapper {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .article-container {
+        display: flex;
+        flex-wrap: wrap; /* Allows wrapping on small screens */
+        gap: 20px; /* Space between cards */
+        justify-content: center; /* Center cards horizontally */
+      }
+      #article-feed {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      
+      
+      .article-card {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+      }
+      
+      .article-card img {
+        width: 100%;      /* make image fill container width */
+        height: auto;
+        max-width: none;  /* remove max-width restriction */
+        border-radius: 8px; /* optional: round corners */
+        margin-bottom: 15px; /* space below image */
+      }
+      #full-article-container {
+        display: none; /* show when needed */
+        padding: 20px;
+        border: 1px solid #999;
+        background-color: #fff;
+        border-radius: 10px;
+        max-width: 800px; /* Limit width */
+        margin: 40px auto; /* Center horizontally */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: add subtle shadow */
+      }
+      
+      
+     
+      

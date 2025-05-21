@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NepNews</title>
+    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <!-- Header Left: Displays the user's location and current date -->
+            <div class="header-left">
+                <p id="location">Fetching location...</p>
+                <p id="date">Fetching date...</p>
+              </div>
+
+            <!-- Header Center: Logo of the website -->
+            <div class="logo-box">
+                <a href="index2.html" style="text-decoration: none;">
+                <h1 class="logo">NEP<span>NEWS</span></h1>
+            </div>
+
+<!-- Header Right: User and Search icons -->
+<div class="header-right">
+    <!-- Profile Image: Clicking redirects to profile.html -->
+    <div class="profile-container">
+        <a href="profile.html">
+            <img id="profileImage" src="https://www.usatoday.com/gcdn/presto/2021/07/14/USAT/6e308a64-f76f-4cf6-90e9-c4061b904cc1-AFP_AFP_9AG4ZZ.jpg?crop=2200,1238,x0,y111&width=660&height=371&format=pjpg&auto=webp" alt="Profile" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;" />
+        </a>
+    </div>
+
+
+<!-- Always Visible Search Form -->
+<div id="searchForm">
+    <input type="text" id="searchInput" placeholder="Search news...">
+    <button onclick="searchNews()">Submit</button>
+  </div>
+  
+  
+</div>
+  
+            
+        <!-- Authentication Modal (contains login, signup, and password reset forms) -->
+        <div id="authModal" class="auth-modal">
+            <div class="auth-modal-content">
+                <!-- Close button for the modal -->
+                <span class="close-btn" onclick="closeAuthModal()">✖</span>
+
+                <!-- Container that holds all authentication-related forms -->
+                <div id="authFormContainer">
+
+                    <!-- Login Form -->
+                    <div id="loginForm">
+                        <h2>Login To Your NepNews Account</h2>
+
+                        <!-- Email input field -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="Enter Your Email">
+                        </div>
+                        <span id="emailError" class="error"></span>
+
+                        <!-- Password input field with toggle visibility icon -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter Your Password">
+                            <i class="fa-solid fa-eye" onclick="togglePassword('loginPassword', this)"></i>
+                        </div>
+                        <span id="passwordError" class="error"></span>
+
+                        <!-- Remember me and forgot password options -->
+                        <div class="options">
+                            <label><input type="checkbox"> Remember me</label>
+                            <a href="javascript:void(0)" onclick="toggleForm('forgotPassword')">Forgot Password?</a>
+                        </div>
+
+
+                        <!-- Login button -->
+                        <button class="auth-btn" onclick="event.preventDefault(); validateLogin()">Login</button>
+                        <div id="popupMessage" class="popup hidden">
+                            <span id="popupText"></span>
+                        </div>
+
+
+                        <!-- Divider with social media login options -->
+                        <div class="social-login">
+                            <div class="line-container">
+                                <span>Or sign in with:</span>
+                            </div>
+                            <div class="social-icons">
+                                <button class="social-btn apple-btn" aria-label="Login with Apple">
+                                    <i class="fa-brands fa-apple"></i>
+                                </button>
+                                <button class="social-btn google-btn" aria-label="Login with Google">
+                                    <i class="fa-brands fa-google"></i>
+                                </button>
+                                <button class="social-btn facebook-btn" aria-label="Login with Facebook">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Link to switch to signup form -->
+                        <div class="bottom-text">
+                            Don't have an account? <a href="javascript:void(0)" onclick="toggleForm('signup')">Sign Up</a>
+                        </div>
+                    </div>
+
+                        <!-- Signup Form (hidden by default) -->
+                        <div id="signupForm" style="display: none;">
+                            <h2>Create Your NepNews Account</h2>
+
+                            <!-- Full name input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" placeholder="Full Name">
+                            </div>
+
+                            <!-- Phone number input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" placeholder="Enter Your Phone Number">
+                            </div>
+
+                            <!-- Email input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" placeholder="Enter Your Email">
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="signupPassword" placeholder="Enter Your Password">
+                                <i class="fa-solid fa-eye" onclick="togglePassword('signupPassword', this)"></i>
+                            </div>
+
+                            <!-- Confirm password input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="signupConfirmPassword" placeholder="Confirm Password">
+                                <i class="fa-solid fa-eye" onclick="togglePassword('signupConfirmPassword', this)"></i>
+                            </div>
+
+                            <!-- Terms and Conditions checkbox -->
+                            <label class="terms">
+                                <input type="checkbox"> I agree to the <a href="#">Terms & Conditions</a>
+                            </label>
+
+                            <!-- Signup button -->
+                            <button class="auth-btn" onclick="handleSignup()">Create Account</button>
+
+
+                            <!-- Link to switch back to login form -->
+                            <div class="bottom-text">
+                                Already Have An Account? <a href="javascript:void(0)" onclick="toggleForm('login')">Login</a>
+                            </div>
+                        </div>
+
+                    <!-- Forgot Password Form -->
+                    <div id="forgotPasswordForm" class="forgot-password-section">
+                        <h2>Reset Your Password</h2>
+
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="resetEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div id="passwordResetMessage" class="forgot-password-section">
+                            <!-- //<button class="auth-btn" id="resetButton">Send Reset Link</button> -->
+                            <div id="passwordResetMessage" class="forgot-password-section"></div>
+
+                          </div>
+                    </div>
+
+                </div> <!-- End of authFormContainer -->
+            </div> <!-- End of auth-modal-content -->
+        <!-- </div> End of auth-modal -->
+    </header>
+
+
+    <main>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index2.html">Home</a></li>
+                <li><a href="politics2.html">Politics</a></li>
+                <li><a href="technology2.html">Technology</a></li>
+                <li><a href="culture2.html">Culture</a></li>
+                <li><a href="arts2.html">Arts</a></li>
+                <li><a href="earth2.html">Earth</a></li>
+            </ul>
+        </nav>
+        <div class="black-line"></div>
+        <h1>Latest News</h1>
+        <!-- <div class="news-container">
+            <img src="https://www.fiscalnepal.com/wp-content/uploads/2025/04/starting--scaled.jpg" alt="WordCamp Nepal 2025">
+            <h4>WordCamp Nepal 2025 Concludes in Kathmandu</h4>
+            <p class="short-desc">The two-day event brought together WordPress enthusiasts and professionals to share insights, collaborate on projects, and explore innovations within the open-source community.</p>
+            <p class="time-country"><span class="time">2hr ago</span> | <span class="country">Nepal</span></p>
+        </div> -->
+        
+        <main>
+            <div class="nav-ad-container">
+                <div class="black-line"></div>
+                <img id="top-ad-image" src="" alt="Advertisement">
+                <span id="top-ad-label" class="ad-label">Advertisement</span>
+                <div class="black-line"></div>
+            </div>
+            
+          <!-- Home Category -->
+<div id="home" class="news-category">
+
+
+    <!-- News Item 1 -->
+    <div class="news-container">
+        <img src="https://www.fiscalnepal.com/wp-content/uploads/2025/04/starting--scaled.jpg" alt="WordCamp Nepal 2025">
+        <h4>WordCamp Nepal 2025 Concludes in Kathmandu</h4>
+        <p class="short-desc">The two-day event brought together WordPress enthusiasts and professionals to share insights, collaborate on projects, and explore innovations within the open-source community.</p>
+        <p class="time-country"><span class="time">2hr ago</span> | <span class="country">Nepal</span></p>
+    </div>
+    
+
+    
+
+</div>
+
+
+        
+            <!-- politics Category -->
+            <div id="Politics" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://media.istockphoto.com/id/499654668/photo/sunset-over-patan-durbar-square-in-kathmandu-nepal.jpg?s=612x612&w=0&k=20&c=EgIqUy0EdoZPiaq_8sE2AXbgmMihZRpxgo638hzI4Hg=" alt="News Image">
+                    <h4>Kathmandu Updates</h4>
+                    <p class="short-desc">Latest updates from Kathmandu...</p>
+                    <p class="time-country"><span class="time">3hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://images.pexels.com/photos/2104882/pexels-photo-2104882.jpeg?cs=srgb&dl=pexels-bimal-ranabhat-642289-2104882.jpg&fm=jpg" alt="News Image">
+                    <h4>Kathmandu Local News</h4>
+                    <p class="short-desc">What's happening in Kathmandu...</p>
+                    <p class="time-country"><span class="time">6hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://media.istockphoto.com/id/637268486/photo/patan.jpg?s=612x612&w=0&k=20&c=IHL_X9XMlTKCFjXMAdJTr3dLoJTN-Vvn5QsYfNtnkgc=" alt="News Image">
+                    <h4>Kathmandu Street Events</h4>
+                    <p class="short-desc">New street events are taking place in Kathmandu...</p>
+                    <p class="time-country"><span class="time">9hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+        
+            <!-- News Category -->
+            <div id="news" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Global News Update</h4>
+                    <p class="short-desc">Latest updates from around the world...</p>
+                    <p class="time-country"><span class="time">1hr ago</span> | <span class="country">Global</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>World Events</h4>
+                    <p class="short-desc">Breaking global news...</p>
+                    <p class="time-country"><span class="time">5hr ago</span> | <span class="country">Global</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>International Diplomacy</h4>
+                    <p class="short-desc">International diplomatic relations are evolving...</p>
+                    <p class="time-country"><span class="time">8hr ago</span> | <span class="country">Global</span></p>
+                </div>
+            </div>
+        
+            <!-- Sports Category -->
+            <div id="sports" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Sports Update</h4>
+                    <p class="short-desc">Latest sports news...</p>
+                    <p class="time-country"><span class="time">6hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Football Match Highlights</h4>
+                    <p class="short-desc">Highlights from the latest football match...</p>
+                    <p class="time-country"><span class="time">12hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Basketball Tournament</h4>
+                    <p class="short-desc">Latest updates on basketball...</p>
+                    <p class="time-country"><span class="time">15hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+        
+            <!-- Health Category -->
+            <div id="health" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Health Updates</h4>
+                    <p class="short-desc">Latest health tips and news...</p>
+                    <p class="time-country"><span class="time">7hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Fitness Tips</h4>
+                    <p class="short-desc">How to stay fit and healthy...</p>
+                    <p class="time-country"><span class="time">9hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Mental Health Awareness</h4>
+                    <p class="short-desc">Understanding the importance of mental health...</p>
+                    <p class="time-country"><span class="time">11hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+        
+            <!-- Culture Category -->
+            <div id="culture" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Culture Event Updates</h4>
+                    <p class="short-desc">Latest news in culture...</p>
+                    <p class="time-country"><span class="time">2hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Traditional Events</h4>
+                    <p class="short-desc">Updates on traditional cultural events...</p>
+                    <p class="time-country"><span class="time">5hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Cultural Heritage Sites</h4>
+                    <p class="short-desc">News about cultural heritage in Nepal...</p>
+                    <p class="time-country"><span class="time">8hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+        
+            <!-- Arts Category -->
+            <div id="arts" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Artistic Events</h4>
+                    <p class="short-desc">News about artistic events and exhibitions...</p>
+                    <p class="time-country"><span class="time">1hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Artist Interviews</h4>
+                    <p class="short-desc">Interviews with famous artists...</p>
+                    <p class="time-country"><span class="time">3hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>New Art Releases</h4>
+                    <p class="short-desc">The latest in the world of art...</p>
+                    <p class="time-country"><span class="time">5hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+        
+            <!-- Travel Category -->
+            <div id="travel" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Travel Updates</h4>
+                    <p class="short-desc">Latest travel trends and news...</p>
+                    <p class="time-country"><span class="time">4hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Top Travel Destinations</h4>
+                    <p class="short-desc">Best places to visit in Nepal...</p>
+                    <p class="time-country"><span class="time">7hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Adventure Travel</h4>
+                    <p class="short-desc">For thrill-seekers and adventurers...</p>
+                    <p class="time-country"><span class="time">9hr ago</span> | <span class="country">Nepal</span></p>
+                </div>
+            </div>
+        
+            <!-- Earth Category -->
+            <div id="earth" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Earth's Changing Climate</h4>
+                    <p class="short-desc">How the Earth is changing...</p>
+                    <p class="time-country"><span class="time">6hr ago</span> | <span class="country">Global</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Environmental News</h4>
+                    <p class="short-desc">The latest environmental changes...</p>
+                    <p class="time-country"><span class="time">8hr ago</span> | <span class="country">Global</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Nature Conservation</h4>
+                    <p class="short-desc">Efforts towards nature conservation...</p>
+                    <p class="time-country"><span class="time">12hr ago</span> | <span class="country">Global</span></p>
+                </div>
+            </div>
+        
+            <!-- F1 Category -->
+            <div id="f1" class="news-category" style="display: none;">
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>F1 Updates</h4>
+                    <p class="short-desc">Latest F1 news and updates...</p>
+                    <p class="time-country"><span class="time">2hr ago</span> | <span class="country">Global</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Grand Prix Highlights</h4>
+                    <p class="short-desc">Highlights from the latest Grand Prix...</p>
+                    <p class="time-country"><span class="time">5hr ago</span> | <span class="country">Global</span></p>
+                </div>
+                <div class="news-item">
+                    <img src="https://via.placeholder.com/800x450" alt="News Image">
+                    <h4>Driver Interviews</h4>
+                    <p class="short-desc">Exclusive interviews with F1 drivers...</p>
+                    <p class="time-country"><span class="time">8hr ago</span> | <span class="country">Global</span></p>
+                </div>
+            </div>
+        </main>
+        <div class="nav-ad-container">
+            <div class="black-line"></div>
+            <img id="bottom-ad-image" src="" alt="Bottom Advertisement">
+            <span id="bottom-ad-label" class="ad-label">Bottom Advertisement</span>
+            <div class="black-line"></div>
+        </div>
+        <div class="news-container">
+        
+        
+
+
+
+   
+
+<footer>
+    <div>Follow Us On 
+        <i class="fab fa-facebook"></i> 
+        <i class="fab fa-instagram"></i> 
+        <i class="fab fa-twitter"></i>
+    </div>
+    <div>© 2025 NepNews by DevSphere | All Rights Reserved</div>
+</footer>
+
+    <script src="script2.js"></script>
+</body>
+</html>

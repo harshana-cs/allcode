@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Panel</title>
+    <link rel="stylesheet" href="Editor_Mainpage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="container">
+       <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">NEPNEWS</h1>
+        </div>
+        <h2 class="editor-title">Editor Panel</h2>
+        <div class="user-icon">
+            <span class="material-icons">person</span>
+        </div>
+    </header>
+
+
+        <h2>Select An Article To Review</h2>
+
+        <!-- Pending Articles Section -->
+        <section class="section">
+            <div class="section-title">Pending Articles</div>
+
+            <!-- Article 1 -->
+            <div class="article">
+                <div>
+                    <strong>Olivia Bennet</strong><br>
+                    Anautho anautho lagcha jindagi yo timi binaa<br>
+                    <span class="status pending">Status: Pending</span>
+                </div>
+                <button class="view-button" onclick="viewArticle(1)">View</button>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="article">
+                <div>
+                    <strong>Olivia Bennet</strong><br>
+                    Anautho anautho lagcha jindagi yo timi binaa<br>
+                    <span class="status pending">Status: Pending</span>
+                </div>
+                <button class="view-button" onclick="viewArticle(2)">View</button>
+            </div>
+        </section>
+
+        <!-- Reviewed Articles Section -->
+        <section class="section">
+            <div class="section-title">Reviewed Articles</div>
+
+            <!-- Rejected Article -->
+            <div class="article">
+                <div>
+                    <strong>Amelia Clarke</strong><br>
+                    Random news idk what to write<br>
+                    <span class="status rejected">Status: Rejected</span>
+                </div>
+                <button class="view-button" onclick="viewArticle(3)">View</button>
+            </div>
+
+            <!-- Approved Article -->
+            <div class="article">
+                <div>
+                    <strong>Jacob Reynolds</strong><br>
+                    Wallu dun dun dunali wapablu tob tobali<br>
+                    <span class="status approved">Status: Approved</span>
+                </div>
+                <button class="view-button" onclick="viewArticle(4)">View</button>
+            </div>
+        </section>
+    </div>
+    <div id="profileModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>👤 Editor Profile</h3>
+    <p>Email: <span id="editorEmailDisplay"></span></p>
+     <p><strong>Name:</strong> <span id="editorNameDisplay">Ram Shrestha</span></p>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+    <button id="cancelBtn" class="cancel-btn">Cancel</button>
+  </div>
+</div>
+    <script src="Editor_Mainpage.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0e0e0;
+}
+
+/* Authentication Container */
+.auth-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+.auth-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Input Group */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.input-group span {
+    margin-right: 10px;
+}
+
+.input-group input {
+    border: none;
+    background: none;
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Remember Me & Forgot Password */
+.options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.options a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Buttons */
+.auth-btn {
+    background: #3b82f6;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    background: #2563eb;
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+.divider hr {
+    flex: 1;
+    border: none;
+    height: 1px;
+    background: #ccc;
+    margin: 0 10px;
+}
+
+/* Social Login */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.social-login img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+/* Bottom Text */
+.bottom-text {
+    font-size: 14px;
+}
+
+.bottom-text a {
+    color: #3b82f6;
+    text-decoration: none;
+}

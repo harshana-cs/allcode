@@ -1,0 +1,39 @@
+// Select elements
+const userIcon = document.getElementById("userIcon");
+const authModal = document.getElementById("authModal");
+const closeModal = document.getElementById("closeModal");
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+const showSignup = document.getElementById("showSignup");
+const showLogin = document.getElementById("showLogin");
+
+// Show modal when user clicks the icon
+userIcon.addEventListener("click", () => {
+    authModal.style.display = "block";
+});
+
+// Hide modal when clicking the close button
+closeModal.addEventListener("click", () => {
+    authModal.style.display = "none";
+});
+
+// Hide modal when clicking outside the content box
+window.addEventListener("click", (event) => {
+    if (event.target === authModal) {
+        authModal.style.display = "none";
+    }
+});
+
+// Switch to Signup Form
+showSignup.addEventListener("click", (event) => {
+    event.preventDefault();
+    loginForm.style.display = "none";
+    signupForm.style.display = "block";
+});
+
+// Switch to Login Form
+showLogin.addEventListener("click", (event) => {
+    event.preventDefault();
+    signupForm.style.display = "none";
+    loginForm.style.display = "block";
+});

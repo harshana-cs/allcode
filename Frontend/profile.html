@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile | NepNews</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <p id="location">Fetching location...</p>
+            <p id="date">Fetching date...</p>
+          </div>
+        
+        
+        <div class="header-center">
+            <a href="index2.html" style="text-decoration: none;">
+          <div class="logo">NEPNEWS</div>
+        </div>
+        <a href="index2.html">
+            <img id="profileImage" src="https://www.usatoday.com/gcdn/presto/2021/07/14/USAT/6e308a64-f76f-4cf6-90e9-c4061b904cc1-AFP_AFP_9AG4ZZ.jpg?crop=2200,1238,x0,y111&width=660&height=371&format=pjpg&auto=webp" alt="Profile" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;" />
+        </a>
+      </header>
+      
+
+    <main class="container">
+        <aside class="sidebar">
+            <h3>Settings</h3>
+            <ul>
+                <li onclick="showSection('profile', event)"><i class="fa-solid fa-user icon"></i> User Profile</li>
+
+<li onclick="showSection('saved-posts')"><i class="fa-solid fa-bookmark icon"></i> Saved Posts</li>
+<li onclick="showSection('privacy-policy')"><i class="fa-solid fa-shield-halved icon"></i> Privacy</li>
+<li onclick="showSection('contact-us')"><i class="fa-solid fa-phone icon"></i> Contact Us</li>
+<li onclick="showLogoutConfirmation()"><i class="fa-solid fa-right-from-bracket icon"></i> Log out</li>
+
+
+            </ul>
+            
+        </aside>
+
+        <section id="profile" class="content-section" style="display: none;">
+            <div class="profile-card">
+              <img class="avatar" src="https://www.usatoday.com/gcdn/presto/2021/07/14/USAT/6e308a64-f76f-4cf6-90e9-c4061b904cc1-AFP_AFP_9AG4ZZ.jpg?crop=2200,1238,x0,y111&width=660&height=371&format=pjpg&auto=webp" alt="Profile Picture">
+            
+              <div class="info">
+                <h3>Personal Information</h3>
+                <p><strong>Name:</strong> <span id="name">Aliza</span></p>
+                <p><strong>Email:</strong> <span id="emailInfo">lionelmessi10@gmail.com</span></p>
+                <p><strong>Phone:</strong> <span id="phoneInfo">0000000</span></p>
+              </div>
+            </div>
+          </section>
+          
+        
+        <section id="saved-posts" class="content-section" style="display:none;">
+            <h2>Saved Posts</h2>
+            <p>You have no saved posts at the moment.</p>
+        </section>
+        
+        <section id="privacy-policy" class="content-section" style="display:none;">
+            <h2>Privacy Policy</h2>
+            <p>Effective Date: March 21, 2025</p>
+        
+            <p><strong>1. Introduction</strong></p>
+            <p>At NepNews, your privacy is a top priority. This Privacy Policy explains how we collect, use, store, and protect your personal data when you interact with our website and services.</p>
+        
+            <p><strong>2. Information We Collect</strong></p>
+            <ul>
+                <li><strong>Personal Information:</strong> Name, email address, phone number, date of birth (if provided), and location.</li>
+                <li><strong>Technical Data:</strong> IP address, browser type, device information, operating system, and access times.</li>
+                <li><strong>Usage Data:</strong> Pages visited, time spent on pages, interaction with content, saved articles, and settings preferences.</li>
+                <li><strong>Cookies & Tracking:</strong> We use cookies and similar technologies to enhance user experience and analytics.</li>
+            </ul>
+        
+            <p><strong>3. How We Use Your Data</strong></p>
+            <ul>
+                <li>To provide and personalize content and services.</li>
+                <li>To send updates, newsletters, or notifications (only if subscribed).</li>
+                <li>To improve our website functionality and performance.</li>
+                <li>To ensure security, prevent fraud, and maintain integrity of services.</li>
+            </ul>
+        
+            <p><strong>4. Data Sharing</strong></p>
+            <ul>
+                <li>We do <strong>not sell or rent</strong> your personal data to third parties.</li>
+                <li>We may share data with trusted partners (e.g., analytics tools) under strict confidentiality agreements.</li>
+                <li>Data may be disclosed if required by law or court order.</li>
+            </ul>
+        
+            <p><strong>5. Your Rights</strong></p>
+            <ul>
+                <li>Access, update, or delete your data anytime by contacting us.</li>
+                <li>Opt out of newsletters or promotional emails at any time.</li>
+                <li>Request data portability or restrict certain uses of your data.</li>
+            </ul>
+        
+            <p><strong>6. Data Retention</strong></p>
+            <p>We retain your personal data only for as long as necessary to fulfill the purposes outlined in this policy or as required by law.</p>
+        
+            <p><strong>7. Security Measures</strong></p>
+            <p>We implement appropriate security protocols such as encryption, secure servers, and authentication processes to protect your data.</p>
+        
+            <p><strong>8. Children’s Privacy</strong></p>
+            <p>Our services are not intended for children under the age of 13. We do not knowingly collect personal data from children.</p>
+        
+            <p><strong>9. Changes to This Policy</strong></p>
+            <p>We may update this Privacy Policy from time to time. Significant changes will be notified on this page or via email.</p>
+        
+            <p><strong>10. Contact</strong></p>
+            <p>If you have any questions or concerns about this Privacy Policy, contact us at <a href="#contact-us">Contact Us</a>.</p>
+        </section>
+        
+        
+        <section id="contact-us" class="content-section" style="display:none;">
+            <h2>Contact Us</h2>
+            <p>We welcome your questions, feedback, suggestions, and complaints. You can reach us through the following channels:</p>
+        
+            <ul>
+                <li><strong>Email Support:</strong> <a href="mailto:support@nepnews.com">support@nepnews.com</a></li>
+                <li><strong>Technical Issues:</strong> <a href="mailto:tech@nepnews.com">tech@nepnews.com</a></li>
+                <li><strong>Advertising:</strong> <a href="mailto:ads@nepnews.com">ads@nepnews.com</a></li>
+                <li><strong>Phone:</strong> +977-1-1234567 (Customer Support)</li>
+                <li><strong>Office Address:</strong> DevSphere Pvt. Ltd., Pulchowk, Lalitpur, Kathmandu, Nepal</li>
+                <li><strong>Business Hours:</strong> Sunday – Friday, 9:00 AM – 6:00 PM (Nepal Time)</li>
+            </ul>
+        
+            <p>We strive to respond to all inquiries within 24 to 48 business hours. Your feedback helps us grow and improve our platform for a better news experience.</p>
+        </section>
+        
+        
+    </main>
+
+    <footer>
+        <div>Follow Us On 
+            <i class="fab fa-facebook"></i> 
+            <i class="fab fa-instagram"></i> 
+            <i class="fab fa-twitter"></i>
+        </div>
+        <div>© 2025 NepNews by DevSphere | All Rights Reserved</div>
+    </footer>
+    
+
+    <!-- Logout confirmation modal -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to log out?</p>
+            <button onclick="logout()">Yes</button>
+            <button onclick="closeModal()">No</button>
+        </div>
+    </div>
+
+    <!-- <script>
+        function showLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+
+        function logout() {
+            // Replace with actual redirection logic
+            window.location.href = 'index.html';
+        }
+        function showSection(sectionId) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => section.style.display = 'none');
+
+    // Hide the profile card section to prevent overlap (this ensures proper behavior when the user profile is clicked)
+    const profileSection = document.querySelector('.profile-card');
+    profileSection.style.display = 'none';
+
+    // Remove active class from all sidebar items
+    const items = document.querySelectorAll('.sidebar li');
+    items.forEach(item => item.classList.remove('active'));
+
+    // Show selected section (e.g., saved posts, privacy, contact us)
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+    }
+
+    // Add active class to clicked item
+    const clickedItem = event.target.closest('li');
+    if (clickedItem) {
+        clickedItem.classList.add('active');
+    }
+
+    // If the "User Profile" is clicked, show the profile card section again
+    if (sectionId === 'profile') {
+        profileSection.style.display = 'block';
+    }
+}
+// Get the user's email dynamically or hardcoded (for testing purposes, we use a hardcoded email)
+const email = "aditya@gmail.com";
+
+// Function to fetch user profile data from the backend
+async function getUserProfile() {
+    try {
+        const response = await fetch(`/api/user/profile/${email}`);
+
+        if (!response.ok) {
+            throw new Error("User not found");
+        }
+
+        const user = await response.json();
+        
+        // Display user data
+        document.getElementById('name').textContent = user.name;
+        document.getElementById('email').textContent = user.email;
+        document.getElementById('phone').textContent = user.phone;
+    } catch (err) {
+        console.error("Error fetching user profile:", err);
+    }
+}
+
+// Fetch the user profile when the page loads
+window.onload = getUserProfile;
+
+
+    </script> -->
+    <script>
+        const dateElement = document.getElementById("date");
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString("en-GB", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+  dateElement.textContent = formattedDate;
+
+  // Get location using IP geolocation API
+  const locationElement = document.getElementById("location");
+  fetch("https://ipapi.co/json/")
+    .then(response => response.json())
+    .then(data => {
+      locationElement.textContent = `${data.city}, ${data.country_name}`;
+    })
+    .catch(error => {
+      console.error("Error fetching location:", error);
+      locationElement.textContent = "Location unavailable";
+    });
+        // Function to show a confirmation modal when logging out
+        function showLogoutConfirmation() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+    
+        // Function to close the logout confirmation modal
+        function closeModal() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+    
+        // Function to log out the user and redirect to the login page (or homepage)
+        function logout() {
+            // Replace with actual redirection logic
+            window.location.href = 'index.html'; // Redirect to homepage or login page
+        }
+    
+        // Function to show the selected section in the sidebar
+        function showSection(sectionId, event) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.style.display = 'none');
+    
+            // Hide the profile card section to prevent overlap
+            const profileSection = document.querySelector('.profile-card');
+            profileSection.style.display = 'none';
+    
+            // Remove active class from all sidebar items
+            const items = document.querySelectorAll('.sidebar li');
+            items.forEach(item => item.classList.remove('active'));
+    
+            // Show the selected section (e.g., saved posts, privacy, contact us)
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+    
+            // Add active class to the clicked sidebar item
+            const clickedItem = event.target.closest('li');
+            if (clickedItem) {
+                clickedItem.classList.add('active');
+            }
+    
+            // If "User Profile" is clicked, show the profile card section again
+            if (sectionId === 'profile') {
+                profileSection.style.display = 'block';
+            }
+        }
+    
+        const email = "aliza@gmail.com"; // Ensure this email is dynamic or correct
+
+// Function to fetch user profile data from the backend
+// async function getUserProfile() {
+//   try {
+//     const email = "aliza@gmail.com"; // Get the email dynamically or statically (hardcoded for now)
+//     const response = await fetch(`http://localhost:5000/api/user/profile/${email}`);
+
+//     if (!response.ok) {
+//       throw new Error("User not found");
+//     }
+
+//     const user = await response.json();
+
+//     // Update the HTML elements with the user data from the backend
+//     document.getElementById('name').textContent = user.name || 'Not Available'; // Update name
+//     document.getElementById('emailInfo').textContent = user.email || 'Not Available'; // Update email
+//     document.getElementById('phoneInfo').textContent = user.phone || 'Not Available'; // Update phone
+//   } catch (err) {
+//     console.error("Error fetching user profile:", err);
+//   }
+// }
+// function updateProfile() {
+//     // Retrieve the user data from localStorage
+//     const userName = localStorage.getItem('userName');
+//     const userEmail = localStorage.getItem('userEmail');
+//     const userPhone = localStorage.getItem('userPhone') || 'Not Available'; // If phone is not available, display 'Not Available'
+
+//     // Update the HTML elements with the user data from localStorage
+//     document.getElementById('name').textContent = userName || 'Not Available'; // Name
+//     document.getElementById('emailInfo').textContent = userEmail || 'Not Available'; // Email
+//     document.getElementById('phoneInfo').textContent = userPhone; // Phone
+// }
+
+// // Call updateProfile when the page loads
+// window.onload = updateProfile;
+
+
+// // Fetch the user profile when the page loads
+// window.onload = getUserProfile;
+// Function to fetch user profile data from the backend
+async function getUserProfile() {
+  try {
+    const email = localStorage.getItem('userEmail'); // Get email from localStorage
+    if (!email) {
+      console.error("No email found in localStorage.");
+      return;
+    }
+    const response = await fetch(`http://localhost:5000/api/user/profile/${email}`);
+
+    if (!response.ok) {
+      throw new Error("User not found");
+    }
+
+    const user = await response.json();
+
+    // Update the HTML elements with the user data from the backend
+    document.getElementById('name').textContent = user.name || 'Not Available'; // Update name
+    document.getElementById('emailInfo').textContent = user.email || 'Not Available'; // Update email
+    document.getElementById('phoneInfo').textContent = user.phone || 'Not Available'; // Update phone
+  } catch (err) {
+    console.error("Error fetching user profile:", err);
+  }
+}
+
+function updateProfile() {
+    // Retrieve the user data from localStorage
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+    const userPhone = localStorage.getItem('userPhone') || 'Not Available'; // If phone is not available, display 'Not Available'
+
+    // Update the HTML elements with the user data from localStorage
+    document.getElementById('name').textContent = userName || 'Not Available'; // Name
+    document.getElementById('emailInfo').textContent = userEmail || 'Not Available'; // Email
+    document.getElementById('phoneInfo').textContent = userPhone; // Phone
+}
+
+// Call both functions when the page loads
+window.onload = function() {
+    updateProfile();  // First, update profile with localStorage data
+    getUserProfile(); // Then fetch profile data from the backend
+};
+
+    // Function to toggle between sections (for example, Saved Posts)
+function showSection(sectionId) {
+  const sections = document.querySelectorAll('.content-section');
+  sections.forEach((section) => {
+    section.style.display = 'none'; // Hide all sections
+  });
+
+  const activeSection = document.getElementById(sectionId);
+  activeSection.style.display = 'block'; // Show the selected section
+  if (sectionId === 'saved-posts') {
+    displaySavedPosts(); // Show saved posts when "Saved Posts" section is clicked
+  }
+}
+
+function displaySavedPosts() {
+  const savedPostsSection = document.getElementById('saved-posts');
+  const savedPostsContainer = savedPostsSection.querySelector('p');
+
+  const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+
+  if (bookmarks.length > 0) {
+    savedPostsContainer.innerHTML = '';
+
+    bookmarks.forEach((bookmark, index) => {
+      const postDiv = document.createElement('div');
+      postDiv.classList.add('saved-post');
+
+      postDiv.innerHTML = `
+        <h3>${bookmark.title}</h3>
+        <img src="${bookmark.coverImage}" alt="News Image" style="width: 100px;">
+        <p><strong>Author:</strong> ${bookmark.author}</p>
+        <p><strong>Published:</strong> ${new Date(bookmark.createdAt.$date?.$numberLong || bookmark.createdAt).toLocaleString()}</p>
+        <button class="delete-bookmark" data-index="${index}" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+          Remove Bookmark
+        </button>
+      `;
+
+      savedPostsContainer.appendChild(postDiv);
+    });
+
+    // Attach delete event listeners
+    document.querySelectorAll('.delete-bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = e.target.getAttribute('data-index');
+        bookmarks.splice(index, 1); // remove from array
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks)); // update storage
+        displaySavedPosts(); // refresh UI
+      });
+    });
+
+  } else {
+    savedPostsContainer.innerHTML = 'You have no saved posts at the moment.';
+  }
+}
+
+
+    
+    </script>
+    
+</body>
+</html>

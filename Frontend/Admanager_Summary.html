@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Manager Summary Panel</title>
+    <link rel="stylesheet" href="Admanager_summary.css">
+</head>
+<body>
+    <div class="container">
+        <div class="panel-header">
+            <div class="logo">
+                <div class="nep-logo">NEPNEWS</div>
+                <div class="title">Ad Manager Panel</div>
+            </div>
+            <div class="user-icon">⚫</div>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: right; margin-bottom: 10px;">
+            <button class="back-btn" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">⬅ Back</button>
+        </div>
+
+        <!-- Success Dialog -->
+        <dialog id="success-dialog">
+            <p>✅ Ad uploaded successfully!</p>
+            <button id="ok-btn" style="margin-top: 10px; padding: 6px 12px;">OK</button>
+        </dialog>
+
+        <div class="summary-header">
+            <div class="summary-title">Ad Summary</div>
+        </div>
+
+        <div class="summary-content">
+            <div class="ad-details">
+                <h1 class="ad-title">Ad Title Goes Here</h1>
+                <div class="ad-website">https://www.example.com</div>
+
+                <div class="detail-row">
+                    <div class="detail-label ad-position">Position goes here</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label ad-duration">Duration goes here</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label ad-views">Expected Views: Calculating...</div>
+                </div>
+
+                <div class="upload-button-container">
+                    <button class="upload-btn">Upload Ad</button>
+                </div>
+            </div>
+
+            <div class="ad-preview">
+                <img src="" alt="Ad Preview" id="ad-image" style="max-width: 300px; border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const adData = JSON.parse(localStorage.getItem('adData'));
+        const dialog = document.getElementById('success-dialog');
+        const okBtn = document.getElementById('ok-btn');
+        const backBtn = document.querySelector('.back-btn');
+
+        if (!adData) {
+            alert("No ad data found. Please go back and fill the form.");
+            window.location.href = 'Admanager_Homepage.html';
+            return;
+        }
+
+        // Fill in the ad details
+        document.querySelector('.ad-title').innerText = adData.title;
+        document.querySelector('.ad-website').innerText = adData.websiteLink;
+        document.querySelector('.ad-position').innerText = `Ad Position: ${adData.position}`;
+        document.querySelector('.ad-duration').innerText = `Ad Duration: ${adData.duration}`;
+        document.getElementById('ad-image').src = adData.imageBase64;
+
+        const estimatedViews = parseInt(adData.duration.split(" ")[0]) * 10000;
+        document.querySelector('.ad-views').innerText = `Expected Views: ${estimatedViews}`;
+
+        // Upload Button Handler
+        document.querySelector('.upload-btn').addEventListener('click', async function () {
+            try {
+                const base64 = adData.imageBase64.split(',')[1];
+                const byteCharacters = atob(base64);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const imageBlob = new Blob([byteArray], { type: 'image/jpeg' });
+
+                const formData = new FormData();
+                formData.append("title", adData.title);
+                formData.append("websiteLink", adData.websiteLink);
+                formData.append("position", adData.position);
+                formData.append("duration", parseInt(adData.duration.split(" ")[0]));
+                formData.append("image", imageBlob, "ad-image.jpg");
+
+                const response = await fetch("http://localhost:5000/api/ads/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    dialog.showModal();
+                    // Clear saved data after successful upload
+                    localStorage.removeItem('adData');
+                    localStorage.removeItem('adDataDraft');
+                } else {
+                    alert("Failed to upload ad: " + (result.error || "Unknown error"));
+                }
+            } catch (error) {
+                console.error("Upload error:", error);
+                alert("Something went wrong while uploading the ad.");
+            }
+        });
+
+        // OK button on dialog
+        okBtn.addEventListener('click', function () {
+            dialog.close();
+            window.location.href = "Admanager_Homepage.html";
+        });
+
+        // Back Button (go back to homepage for editing)
+        backBtn.addEventListener('click', () => {
+            // Don't clear adDataDraft, so it can be reused
+            window.location.href = 'Admanager_Homepage.html';
+        });
+    });
+    </script>
+</body>
+</html>

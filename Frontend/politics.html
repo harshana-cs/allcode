@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NepNews</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <!-- Header Left: Displays the user's location and current date -->
+            <div class="header-left">
+                <p id="location">Fetching location...</p>
+                <p id="date">Fetching date...</p>
+              </div>
+
+            <!-- Header Center: Logo of the website -->
+<!-- Header Center: Logo of the website -->
+<div class="logo-box">
+    <a href="index.html" style="text-decoration: none;">
+      <h1 class="logo">NEP<span>NEWS</span></h1>
+    </a>
+  </div>
+  
+
+            <!-- Header Right: User and Search icons -->
+            <div class="header-right">
+                <!-- User Icon: Opens the login/signup modal when clicked -->
+                <span class="user-icon" id="userIcon" onclick="openAuthModal()">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+                
+<!-- Always Visible Search Form -->
+<div id="searchForm">
+    <input type="text" id="searchInput" placeholder="Search news...">
+    <button onclick="searchNews()">Submit</button>
+  </div>
+
+            <!-- Profile Section (Initially hidden) -->
+            <div id="profileModal" style="display:none;">
+                <div id="profileDetails">
+                    <h3 id="profileName"></h3> <!-- Display user's name here -->
+                    <p id="profileEmail"></p> <!-- Display user's email here -->
+                    <p id="profilePhone"></p> <!-- Display user's phone here -->
+                    <!-- You can add other profile details here -->
+                </div>
+                <button onclick="logout()">Logout</button>
+            </div>
+            <img id="profileIcon" src="" alt="Profile"
+            style="display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer;" 
+            onclick="toggleProfileModal()" />
+            
+        <!-- Authentication Modal (contains login, signup, and password reset forms) -->
+        <div id="authModal" class="auth-modal" style="display: none;">
+
+            <div class="auth-modal-content">
+                <!-- Close button for the modal -->
+                <span class="close-btn" onclick="closeAuthModal()">✖</span>
+
+                <!-- Container that holds all authentication-related forms -->
+                <div id="authFormContainer">
+
+                    <!-- Login Form -->
+                    <div id="loginForm">
+                        <h2>Login To Your NepNews Account</h2>
+
+                        <!-- Email input field -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="Enter Your Email">
+                        </div>
+                        <span id="emailError" class="error"></span>
+
+                        <!-- Password input field with toggle visibility icon -->
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter Your Password">
+                            <i class="fa-solid fa-eye" onclick="togglePassword('loginPassword', this)"></i>
+                        </div>
+                        <span id="passwordError" class="error"></span>
+
+                        <!-- Remember me and forgot password options -->
+                        <div class="options">
+                            <label><input type="checkbox"> Remember me</label>
+                            <a href="javascript:void(0)" onclick="toggleForm('forgotPassword')">Forgot Password?</a>
+                        </div>
+
+
+                        <!-- Login button -->
+                        <button class="auth-btn" onclick="event.preventDefault(); validateLogin()">Login</button>
+                        <div id="popupMessage" class="popup hidden">
+                            <span id="popupText"></span>
+                        </div>
+
+
+                        <!-- Divider with social media login options -->
+                        <div class="social-login">
+                            <div class="line-container">
+                                <span>Or sign in with:</span>
+                            </div>
+                            <div class="social-icons">
+                                <button class="social-btn apple-btn" aria-label="Login with Apple">
+                                    <i class="fa-brands fa-apple"></i>
+                                </button>
+                                <button class="social-btn google-btn" aria-label="Login with Google">
+                                    <i class="fa-brands fa-google"></i>
+                                </button>
+                                <button class="social-btn facebook-btn" aria-label="Login with Facebook">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Link to switch to signup form -->
+                        <div class="bottom-text">
+                            Don't have an account? <a href="javascript:void(0)" onclick="toggleForm('signup')">Sign Up</a>
+                        </div>
+                    </div>
+
+                        <!-- Signup Form (hidden by default) -->
+                        <div id="signupForm" style="display: none;">
+                            <h2>Create Your NepNews Account</h2>
+
+                            <!-- Full name input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" placeholder="Full Name">
+                            </div>
+
+                            <!-- Phone number input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" placeholder="Enter Your Phone Number">
+                            </div>
+
+                            <!-- Email input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" placeholder="Enter Your Email">
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="signupPassword" placeholder="Enter Your Password">
+                                <i class="fa-solid fa-eye" onclick="togglePassword('signupPassword', this)"></i>
+                            </div>
+
+                            <!-- Confirm password input -->
+                            <div class="input-group">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="signupConfirmPassword" placeholder="Confirm Password">
+                                <i class="fa-solid fa-eye" onclick="togglePassword('signupConfirmPassword', this)"></i>
+                            </div>
+
+                            <!-- Terms and Conditions checkbox -->
+                            <label class="terms">
+                                <input type="checkbox"> I agree to the <a href="#">Terms & Conditions</a>
+                            </label>
+
+                            <!-- Signup button -->
+                            <button class="auth-btn" onclick="handleSignup()">Create Account</button>
+
+
+                            <!-- Link to switch back to login form -->
+                            <div class="bottom-text">
+                                Already Have An Account? <a href="javascript:void(0)" onclick="toggleForm('login')">Login</a>
+                            </div>
+                        </div>
+
+                    <!-- Forgot Password Form -->
+                    <div id="forgotPasswordForm" class="forgot-password-section">
+                        <h2>Reset Your Password</h2>
+
+                        <div class="input-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="resetEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div id="passwordResetMessage" class="forgot-password-section">
+                            <!-- //<button class="auth-btn" id="resetButton">Send Reset Link</button> -->
+                            <div id="passwordResetMessage" class="forgot-password-section"></div>
+
+                          </div>
+                    </div>
+
+                </div> <!-- End of authFormContainer -->
+            </div> <!-- End of auth-modal-content -->
+        <!-- </div> End of auth-modal -->
+    </header>
+
+
+    <main>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="loadCategory('politics')">Politics</a></li>
+                <li><a href="technology.html">Technology</a></li>
+                <li><a href="culture.html">Culture</a></li>
+                <li><a href="arts.html">Arts</a></li>
+                <li><a href="earth.html">Earth</a></li>
+            </ul>
+        </nav>
+        <div class="black-line"></div>
+        <h1>Latest Politics News</h1>
+        <!-- <div class="news-container"></div> -->
+        
+        
+        <main>
+            <main>
+                <div class="nav-ad-container">
+                    <div class="black-line"></div>
+                    <img id="top-ad-image" src="" alt="Advertisement">
+                    <span id="top-ad-label" class="ad-label">Advertisement</span>
+                    <div class="black-line"></div>
+                </div>
+        
+<div id="home" class="news-category">
+    <!-- News Item 1 -->
+    <div class="news-container">
+        <img src="https://www.fiscalnepal.com/wp-content/uploads/2025/04/starting--scaled.jpg" alt="WordCamp Nepal 2025">
+        <h4>WordCamp Nepal 2025 Concludes in Kathmandu</h4>
+        <p class="short-desc">The two-day event brought together WordPress enthusiasts and professionals to share insights, collaborate on projects, and explore innovations within the open-source community.</p>
+        <p class="time-country"><span class="time">2hr ago</span> | <span class="country">Nepal</span></p>
+    </div>
+
+
+</div>    
+</main>
+<div class="nav-ad-container">
+    <div class="black-line"></div>
+    <img id="bottom-ad-image" src="" alt="Bottom Advertisement">
+    <span id="bottom-ad-label" class="ad-label">Bottom Advertisement</span>
+    <div class="black-line"></div>
+</div>
+
+<!-- <div id="popup-ad" class="popup-ad hidden">
+    <div class="popup-content">
+      <button id="close-popup" class="close-btn">&times;</button>
+      <a href="https://www.booking.com/index.en-gb.html?aid=2369666..." target="_blank" id="popup-link">
+        <img id="popup-image" src="http://localhost:5000/uploads/1747234988889.jpg" alt="Booking.com Advertisement">
+      </a>
+    </div>
+  </div> -->
+<footer>
+<div>Follow Us On 
+<i class="fab fa-facebook"></i> 
+<i class="fab fa-instagram"></i> 
+<i class="fab fa-twitter"></i>
+</div>
+<div>© 2025 NepNews by DevSphere | All Rights Reserved</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
